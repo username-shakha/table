@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../store'
 
-const UserName: React.FC = () => {
+export default function UserName() {
   const { name } = useSelector((state: RootState) => state.user)
   const dispatch = useDispatch()
 
@@ -17,5 +17,3 @@ const UserName: React.FC = () => {
     </div>
   )
 }
-
-export default UserName
