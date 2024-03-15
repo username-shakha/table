@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import useFetchData from '../hooks/useGet'
+import Button from './Button'
 
 interface User {
   id: string
@@ -62,10 +63,10 @@ export default function Table({ dataprops }: TTableProps) {
                 <td>{user.status ? 'Active' : 'Inactive'}</td>
                 <td>{user['dialogues-in-progress']}</td>
                 <td>
-                  <button>Edit</button>
+                  <Button>Edit</Button>
                 </td>
                 <td>
-                  <button>Delete</button>
+                  <Button>Delete</Button>
                 </td>
               </tr>
             ))}
