@@ -1,21 +1,16 @@
-import Counter from './components/Counter'
-import UserName from './components/UserName'
-import './App.css'
-import Table from './components/Table'
-import Button from './components/Button'
+import CustomTable from './components/CustomTable'
+import CustomButton from './components/ICustomButton'
+import { heads } from './components/CustomTable/constants'
 
 export default function App() {
   return (
     <>
-      <Counter />
-      <br />
-      <UserName />
       <div style={{ display: 'flex', width: '70%' }}>
         <h2>add an employee</h2>
-        <Button style={{ marginLeft: 'auto', height: 25 }}>Add</Button>
+        <CustomButton style={{ marginLeft: 'auto', height: 25 }}>Add</CustomButton>
       </div>
 
-      <Table dataprops="data" />
+      <CustomTable heads={heads} />
     </>
   )
 }
