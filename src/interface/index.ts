@@ -1,11 +1,4 @@
-export const DELETE = 'Delete' as const
-
-export interface IDeleteAction {
-  type: typeof DELETE
-  payload: number
-}
-
-export interface IUserState {
+export interface User {
   id: number
   username: string
   lastname: string

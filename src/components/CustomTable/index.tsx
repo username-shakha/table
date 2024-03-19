@@ -1,10 +1,9 @@
 // import { useEffect } from 'react'
 // import useFetchData from '../../hooks/useGet'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store'
-import CustomButton from '../ICustomButton'
-import { deleteUser } from '../../store/actions'
-import { IDeleteAction } from '../../store/interfaces'
+import { RootState } from '../../redux/store'
+import { deleteUser } from '../../redux/actionCreators'
+import CustomButton from '../CustomButton'
 
 type TCustomTableProps = {
   heads: Array<string>
@@ -22,13 +21,9 @@ export default function CustomTable({ heads }: TCustomTableProps) {
   const dispatch = useDispatch()
   const users = useSelector((state: RootState) => state.user)
 
-  const handleDelete = (userId: number) => {
-    if (userId) dispatch<IDeleteAction>(deleteUser(userId))
-  }
-
   return (
     <div>
-      <table>
+      <table style={{ width: '100%', textAlign: 'left' }}>
         <thead>
           <tr>{heads && heads.map((head, i) => <th key={i}>{head}</th>)}</tr>
         </thead>
@@ -46,16 +41,20 @@ export default function CustomTable({ heads }: TCustomTableProps) {
                 <td>{user.firstname}</td>
                 <td>{user.lastname}</td>
                 <td>{user.username}</td>
+                <td></td>
                 <td>{user.phonenumber}</td>
                 <td>{user.company}</td>
                 <td>{user.department}</td>
                 <td>{user.status ? 'Active' : 'Inactive'}</td>
                 <td>{user.dialoguesinprogress}</td>
                 <td>
-                  <CustomButton>Edit</CustomButton>
+                  <CustomButton variant="outline">Edit</CustomButton>
                 </td>
                 <td>
-                  <CustomButton onClick={() => handleDelete(user.id)}>
+                  <CustomButton
+                    variant="outline"
+                    onClick={() => dispatch(deleteUser(user.id))}
+                  >
                     Delete
                   </CustomButton>
                 </td>

@@ -1,16 +1,19 @@
 import CustomTable from './components/CustomTable'
-import CustomButton from './components/ICustomButton'
+import CustomButton from './components/CustomButton'
 import { heads } from './components/CustomTable/constants'
+import './App.css'
 
 export default function App() {
   return (
-    <>
-      <div style={{ display: 'flex', width: '70%' }}>
-        <h2>add an employee</h2>
-        <CustomButton style={{ marginLeft: 'auto', height: 25 }}>Add</CustomButton>
+    <div style={{ width: '1200px', margin: '0 auto' }}>
+      <div
+        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+      >
+        <h2>Добавить нового пользователя</h2>
+        <CustomButton variant="outline">Добавить</CustomButton>
       </div>
 
       <CustomTable heads={heads} />
-    </>
+    </div>
   )
 }
