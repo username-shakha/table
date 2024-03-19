@@ -3,7 +3,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { deleteUser } from '../../redux/actionCreators'
-import CustomButton from '../CustomButton'
+import CustomButton from '../CustomButton/CustomButton'
 
 type TCustomTableProps = {
   heads: Array<string>

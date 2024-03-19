@@ -1,5 +1,5 @@
-import CustomTable from './components/CustomTable'
-import CustomButton from './components/CustomButton'
+import CustomTable from './components/CustomTable/CustomTable'
+import CustomButton from './components/CustomButton/CustomButton'
 import { heads } from './components/CustomTable/constants'
 import './App.css'
 
