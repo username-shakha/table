@@ -1,13 +1,13 @@
-import { FC, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import styles from './Modal.module.css'
 
-interface ModalProps {
+type ModalProps = {
   isOpen: boolean
   onClose: () => void
   children: ReactNode
 }
 
-const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
+export default function Modal({ isOpen, onClose, children }: ModalProps) {
   return (
     <>
       {isOpen && (
@@ -23,5 +23,3 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
     </>
   )
 }
-
-export default Modal
