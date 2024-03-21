@@ -2,13 +2,22 @@ import { useState } from 'react'
 import CustomTable from './components/CustomTable/CustomTable'
 import CustomButton from './components/CustomButton/CustomButton'
 import { heads } from './components/CustomTable/constants'
-import './App.css'
-import { AddUser } from './components/AddUser'
 import Container from './components/Container'
 import { Form } from './components/Form/Form'
+import Modal from './components/Modal/Modal'
+// import { AddUser } from './components/AddUser'
+import './App.css'
 
 export default function App() {
-  const [toggle, setToggle] = useState<boolean>(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
   return (
     <Container>
       <div
@@ -22,14 +31,16 @@ export default function App() {
       >
         <h3>Добавить нового пользователя</h3>
 
-        <CustomButton variant="outline" onClick={() => setToggle((prev) => !prev)}>
+        <CustomButton variant="outline" onClick={openModal}>
           Добавить
         </CustomButton>
       </div>
 
       <CustomTable heads={heads} />
-      {toggle && <AddUser />}
-      <Form />
+      {/* {toggle && <AddUser />} */}
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <Form />
+      </Modal>
     </Container>
   )
 }

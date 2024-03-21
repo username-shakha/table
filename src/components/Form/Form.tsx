@@ -146,7 +146,7 @@ export function Form() {
       />
 
       <div style={{ textAlign: 'center' }}>
-        <CustomButton variant="outline" type="submit" style={{ margin: '15px 0px' }}>
+        <CustomButton variant="outline" type="submit" style={{ marginTop: '15px' }}>
           Submit
         </CustomButton>
       </div>
