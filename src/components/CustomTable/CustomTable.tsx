@@ -1,11 +1,17 @@
 // import { useEffect } from 'react'
 // import useFetchData from '../../hooks/useGet'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../redux/store'
-import { deleteUser } from '../../redux/actionCreators'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { RootState } from '../../redux/store'
+// import { deleteUser } from '../../redux/actionCreators'
+import { deleteUser } from '../../app/store/redusers/users/reduser'
+import { RootState } from '../../app/store/store'
+// import { IUser } from '../../shared/lib/types'
 import CustomButton from '../CustomButton/CustomButton'
 import styles from './CustomTable.module.css'
+
+import { useSelector, useDispatch } from 'react-redux'
+
 type TCustomTableProps = {
   heads: Array<string>
 }
@@ -19,8 +25,23 @@ export default function CustomTable({ heads }: TCustomTableProps) {
   //   fetchTableData()
   // }, [fetchTableData])
 
+  // const dispatch = useDispatch()
+  // const users = useSelector((state: RootState) => state.user)
+
+  const allUsers = useSelector((state: RootState) => state.users.allUsers)
   const dispatch = useDispatch()
-  const users = useSelector((state: RootState) => state.user)
+
+  // const handleUpdateUser = (id: number, userData: Partial<IUser>) => {
+  //   dispatch(updateUser({ id, userData }))
+  // }
+
+  const handleDeleteUser = (id: number) => {
+    dispatch(deleteUser({ id }))
+  }
+
+  // const handleAddUser = (newUser: IUser) => {
+  //   dispatch(addUser(newUser))
+  // }
 
   return (
     <div>
@@ -50,24 +71,27 @@ export default function CustomTable({ heads }: TCustomTableProps) {
               </td>
             </tr>
           )}
-          {Array.isArray(users) &&
-            users?.map((user) => (
+          {Array.isArray(allUsers) &&
+            allUsers?.map((user) => (
               <tr key={user.id}>
-                <td>{user.firstname}</td>
-                <td>{user.lastname}</td>
+                <td>{user.name}</td>
+                <td>{user.surname}</td>
                 <td>{user.username}</td>
-                <td></td>
-                <td>{user.phonenumber}</td>
-                <td>{user.company}</td>
+                <td>
+                  {user.endDate}
+                  {user.startDate}
+                </td>
+                <td>{user.phone}</td>
                 <td>{user.department}</td>
-                <td>{user.status ? 'Active' : 'Inactive'}</td>
-                <td>{user.dialoguesinprogress}</td>
+                <td>{user.selectedCompany}</td>
+                <td>{user.userStatus}</td>
+                <td>{user.dialogues}</td>
                 <td>
                   <CustomButton variant="outline">Edit</CustomButton>
 
                   <CustomButton
                     variant="outline"
-                    onClick={() => dispatch(deleteUser(user.id))}
+                    onClick={() => handleDeleteUser(user.id)}
                   >
                     Delete
                   </CustomButton>

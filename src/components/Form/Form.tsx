@@ -1,8 +1,13 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-import CustomButton from '../CustomButton/CustomButton'
+
+import { addUser } from '../../app/store/redusers/users/reduser'
+import { useDispatch } from 'react-redux'
 import styles from './Form.module.css'
+import CustomButton from '../CustomButton/CustomButton'
 
 export function Form() {
+  const dispatch = useDispatch()
+
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [username, setUsername] = useState('')
@@ -10,8 +15,13 @@ export function Form() {
   const [endDate, setEndDate] = useState('')
   const [phone, setPhone] = useState('')
   const [selectedCompany, setSelectedCompany] = useState('')
+  const [department, setDepartment] = useState('')
   const [userStatus, setUserStatus] = useState('active')
   const [dialogues, setDialogues] = useState('')
+
+  const handleDepartmentChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDepartment(e.target.value)
+  }
 
   const handleSelectedCompanyChange = (e: ChangeEvent<HTMLSelectElement>) => {
     setSelectedCompany(e.target.value)
@@ -27,7 +37,34 @@ export function Form() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Handle form submission here
+    const newUser = {
+      id: Math.random(), // Генерируем временный ID
+      name,
+      surname,
+      username,
+      startDate,
+      endDate,
+      phone,
+      selectedCompany,
+      department,
+      userStatus,
+      dialogues,
+    }
+
+    // Диспетчим действие addUser с данными нового пользователя
+    dispatch(addUser(newUser))
+
+    // Очищаем форму после отправки
+    setName('')
+    setSurname('')
+    setUsername('')
+    setStartDate('')
+    setEndDate('')
+    setPhone('')
+    setSelectedCompany('')
+    setDepartment('')
+    setUserStatus('active')
+    setDialogues('')
   }
 
   return (
@@ -111,6 +148,15 @@ export function Form() {
         <option value="company3">Компания 3</option>
         {/* Добавьте другие компании по аналогии */}
       </select>
+
+      <label htmlFor="department">Отдел</label>
+      <input
+        type="text"
+        id="department"
+        value={department}
+        onChange={handleDepartmentChange}
+        required
+      />
 
       <h4 className={styles.heading}>Выберите статус пользователя</h4>
       <div className={styles.radio}>

@@ -9,7 +9,7 @@ type ModalProps = {
 
 export default function Modal({ isOpen, onClose, children }: ModalProps) {
   return (
-    <>
+    <div>
       {isOpen && (
         <div>
           <div className={styles.overlay}>
@@ -20,6 +20,6 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
           <div className={styles.backdrop} onClick={onClose}></div>
         </div>
       )}
-    </>
+    </div>
   )
 }
