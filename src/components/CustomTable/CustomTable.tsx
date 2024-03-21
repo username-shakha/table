@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { deleteUser } from '../../redux/actionCreators'
 import CustomButton from '../CustomButton/CustomButton'
-
+import styles from './CustomTable.module.css'
 type TCustomTableProps = {
   heads: Array<string>
 }
@@ -24,9 +24,23 @@ export default function CustomTable({ heads }: TCustomTableProps) {
 
   return (
     <div>
-      <table style={{ width: '100%', textAlign: 'left' }}>
+      <table
+        style={{
+          width: '100%',
+          textAlign: 'center',
+          borderCollapse: 'collapse',
+          boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.05)',
+        }}
+      >
         <thead>
-          <tr>{heads && heads.map((head, i) => <th key={i}>{head}</th>)}</tr>
+          <tr>
+            {heads &&
+              heads.map((head, i) => (
+                <th className={styles.head} key={i}>
+                  {head}
+                </th>
+              ))}
+          </tr>
         </thead>
         <tbody>
           {false && (
@@ -50,8 +64,7 @@ export default function CustomTable({ heads }: TCustomTableProps) {
                 <td>{user.dialoguesinprogress}</td>
                 <td>
                   <CustomButton variant="outline">Edit</CustomButton>
-                </td>
-                <td>
+
                   <CustomButton
                     variant="outline"
                     onClick={() => dispatch(deleteUser(user.id))}

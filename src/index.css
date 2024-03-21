@@ -1,14 +1,20 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
-
-html,
-body,
-#root {
+/* 
+body {
   position: relative;
   width: 100%;
   min-height: 100%;
+} */
+
+#root {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .add {
@@ -20,8 +26,31 @@ body,
   padding: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   width: 400px;
-  height: 600px;
   background-color: #eee;
 }
+
+input {
+  width: 100%;
+  display: block;
+  min-height: 35px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin: 5px 0px 2px 0px;
+  padding-left: 5px;
+}
+
+/* input[type='radio'] {
+  width: 15px;
+  height: 15px;
+  transition: 0.4s;
+} */

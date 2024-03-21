@@ -4,16 +4,24 @@ import CustomButton from './components/CustomButton/CustomButton'
 import { heads } from './components/CustomTable/constants'
 import './App.css'
 import { AddUser } from './components/AddUser'
-// import { Form } from './components/Form'
+import Container from './components/Container'
+import { Form } from './components/Form/Form'
 
 export default function App() {
   const [toggle, setToggle] = useState<boolean>(false)
   return (
-    <div style={{ width: '1200px', margin: '0 auto' }}>
+    <Container>
       <div
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        className="top"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          margin: '40px 0px',
+        }}
       >
-        <h2>Добавить нового пользователя</h2>
+        <h3>Добавить нового пользователя</h3>
+
         <CustomButton variant="outline" onClick={() => setToggle((prev) => !prev)}>
           Добавить
         </CustomButton>
@@ -21,7 +29,7 @@ export default function App() {
 
       <CustomTable heads={heads} />
       {toggle && <AddUser />}
-      {/* <Form /> */}
-    </div>
+      <Form />
+    </Container>
   )
 }
