@@ -11,16 +11,13 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
   return (
     <>
       {isOpen && (
-        <div className={styles.wrapper}>
-          <div className={`${styles.overlay} ${isOpen ? styles.active : ''}`}>
+        <div>
+          <div className={styles.overlay}>
             <div className={styles.content} onClick={(e) => e.stopPropagation()}>
               {children}
             </div>
           </div>
-          <div
-            className={`${styles.backdrop} ${isOpen ? styles.active : ''}`}
-            onClick={onClose}
-          ></div>
+          <div className={styles.backdrop} onClick={onClose}></div>
         </div>
       )}
     </>
