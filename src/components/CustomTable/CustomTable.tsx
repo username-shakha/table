@@ -1,22 +1,16 @@
-// import { useEffect } from 'react'
-// import useFetchData from '../../hooks/useGet'
-
-// import { useDispatch, useSelector } from 'react-redux'
-// import { RootState } from '../../redux/store'
-// import { deleteUser } from '../../redux/actionCreators'
-import { deleteUser } from '../../app/store/redusers/users/reduser'
-import { RootState } from '../../app/store/store'
-// import { IUser } from '../../shared/lib/types'
-import CustomButton from '../CustomButton/CustomButton'
+// import CustomButton from '../CustomButton/CustomButton'
+// import useAction from '../../hooks/useAction'
+// import { useAppSelector } from '../../shared/lib/hooks'
+// import { selectAllUsers } from '../../app/store/redusers/users/selectors'
 import styles from './CustomTable.module.css'
-
-import { useSelector, useDispatch } from 'react-redux'
+import { ReactNode } from 'react'
 
 type TCustomTableProps = {
+  rows: Record<string, ReactNode>[]
   heads: Array<string>
 }
 
-export default function CustomTable({ heads }: TCustomTableProps) {
+export default function CustomTable({ heads, rows }: TCustomTableProps) {
   // const BASE_URL = import.meta.env.VITE_BASEURL
   // const [fetchTableData, { data: tableData, loading: tableDataLoading, error: tableDataError }] = useFetchData(
   //   `${BASE_URL}/users`
@@ -25,19 +19,16 @@ export default function CustomTable({ heads }: TCustomTableProps) {
   //   fetchTableData()
   // }, [fetchTableData])
 
-  // const dispatch = useDispatch()
-  // const users = useSelector((state: RootState) => state.user)
-
-  const allUsers = useSelector((state: RootState) => state.users.allUsers)
-  const dispatch = useDispatch()
+  // const allUsers = useAppSelector(selectAllUsers)
+  // const { deleteUser } = useAction()
 
   // const handleUpdateUser = (id: number, userData: Partial<IUser>) => {
   //   dispatch(updateUser({ id, userData }))
   // }
 
-  const handleDeleteUser = (id: number) => {
-    dispatch(deleteUser({ id }))
-  }
+  // const handleDeleteUser = (id: number) => {
+  //   dispatch(deleteUser({ id }))
+  // }
 
   // const handleAddUser = (newUser: IUser) => {
   //   dispatch(addUser(newUser))
@@ -71,7 +62,15 @@ export default function CustomTable({ heads }: TCustomTableProps) {
               </td>
             </tr>
           )}
-          {Array.isArray(allUsers) &&
+          {Array.isArray(rows) &&
+            rows.map((row, index) => (
+              <tr key={index}>
+                {heads.map((head) => (
+                  <td key={head}>{row[head]}</td>
+                ))}
+              </tr>
+            ))}
+          {/* {Array.isArray(allUsers) &&
             allUsers?.map((user) => (
               <tr key={user.id}>
                 <td>{user.name}</td>
@@ -79,6 +78,7 @@ export default function CustomTable({ heads }: TCustomTableProps) {
                 <td>{user.username}</td>
                 <td>
                   {user.endDate}
+                  <br />
                   {user.startDate}
                 </td>
                 <td>{user.phone}</td>
@@ -89,15 +89,12 @@ export default function CustomTable({ heads }: TCustomTableProps) {
                 <td>
                   <CustomButton variant="outline">Edit</CustomButton>
 
-                  <CustomButton
-                    variant="outline"
-                    onClick={() => handleDeleteUser(user.id)}
-                  >
+                  <CustomButton variant="outline" onClick={() => deleteUser(user.id)}>
                     Delete
                   </CustomButton>
                 </td>
               </tr>
-            ))}
+            ))} */}
         </tbody>
       </table>
     </div>

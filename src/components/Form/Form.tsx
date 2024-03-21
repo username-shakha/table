@@ -1,13 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
-
-import { addUser } from '../../app/store/redusers/users/reduser'
-import { useDispatch } from 'react-redux'
-import styles from './Form.module.css'
+import useAction from '../../hooks/useAction'
 import CustomButton from '../CustomButton/CustomButton'
+import styles from './Form.module.css'
 
 export function Form() {
-  const dispatch = useDispatch()
-
+  const { addUser } = useAction()
   const [name, setName] = useState('')
   const [surname, setSurname] = useState('')
   const [username, setUsername] = useState('')
@@ -52,7 +49,7 @@ export function Form() {
     }
 
     // Диспетчим действие addUser с данными нового пользователя
-    dispatch(addUser(newUser))
+    addUser(newUser)
 
     // Очищаем форму после отправки
     setName('')

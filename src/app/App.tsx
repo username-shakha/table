@@ -7,9 +7,12 @@ import { Form } from '../components/Form/Form'
 import Modal from '../components/Modal/Modal'
 // import { AddUser } from './components/AddUser'
 import './App.css'
+import { useAppSelector } from '../shared/lib/hooks'
+import { selectAllUsers } from './store/redusers/users/selectors'
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const allUsers = useAppSelector(selectAllUsers)
 
   const openModal = () => {
     setIsModalOpen(true)
@@ -37,7 +40,7 @@ export default function App() {
           </CustomButton>
         </div>
 
-        <CustomTable heads={heads} />
+        <CustomTable rows={allUsers} heads={heads} />
       </Container>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <Form />

@@ -25,7 +25,7 @@ const userSlice = createSlice({
         state.allUsers[userIndex] = { ...state.allUsers[userIndex], ...userData }
       }
     },
-    deleteUser: (state, { payload: { id } }: PayloadAction<{ id: number }>) => {
+    deleteUser: (state, { payload: id }: PayloadAction<number>) => {
       state.allUsers = state.allUsers.filter((user) => user.id !== id)
     },
     addUser: (state, { payload: user }: PayloadAction<IUser>) => {
