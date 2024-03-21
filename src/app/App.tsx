@@ -24,23 +24,15 @@ export default function App() {
   return (
     <>
       <Container>
-        <div
-          className="top"
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            margin: '40px 0px',
-          }}
-        >
+        <header className="header">
           <h3>Добавить нового пользователя</h3>
 
           <CustomButton variant="outline" onClick={openModal}>
             Добавить
           </CustomButton>
-        </div>
+        </header>
 
-        <CustomTable rows={allUsers} heads={heads} />
+        <CustomTable data={allUsers} heads={heads} />
       </Container>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <Form />

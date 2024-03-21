@@ -1,16 +1,22 @@
-// import CustomButton from '../CustomButton/CustomButton'
-// import useAction from '../../hooks/useAction'
-// import { useAppSelector } from '../../shared/lib/hooks'
-// import { selectAllUsers } from '../../app/store/redusers/users/selectors'
+import useAction from '../../hooks/useAction'
+import { IUser } from '../../shared/lib/types'
+import CustomButton from '../CustomButton/CustomButton'
 import styles from './CustomTable.module.css'
+
 import { ReactNode } from 'react'
 
-type TCustomTableProps = {
-  rows: Record<string, ReactNode>[]
-  heads: Array<string>
+type Theads = {
+  key: string
+  label: ReactNode
 }
 
-export default function CustomTable({ heads, rows }: TCustomTableProps) {
+type TCustomTableProps = {
+  data: IUser[]
+  rows?: Array<{ [key: string]: ReactNode }>
+  heads: Array<Theads>
+}
+
+export default function CustomTable({ heads, rows, data }: TCustomTableProps) {
   // const BASE_URL = import.meta.env.VITE_BASEURL
   // const [fetchTableData, { data: tableData, loading: tableDataLoading, error: tableDataError }] = useFetchData(
   //   `${BASE_URL}/users`
@@ -19,21 +25,7 @@ export default function CustomTable({ heads, rows }: TCustomTableProps) {
   //   fetchTableData()
   // }, [fetchTableData])
 
-  // const allUsers = useAppSelector(selectAllUsers)
-  // const { deleteUser } = useAction()
-
-  // const handleUpdateUser = (id: number, userData: Partial<IUser>) => {
-  //   dispatch(updateUser({ id, userData }))
-  // }
-
-  // const handleDeleteUser = (id: number) => {
-  //   dispatch(deleteUser({ id }))
-  // }
-
-  // const handleAddUser = (newUser: IUser) => {
-  //   dispatch(addUser(newUser))
-  // }
-
+  const { deleteUser } = useAction()
   return (
     <div>
       <table
@@ -49,7 +41,7 @@ export default function CustomTable({ heads, rows }: TCustomTableProps) {
             {heads &&
               heads.map((head, i) => (
                 <th className={styles.head} key={i}>
-                  {head}
+                  {head.label}
                 </th>
               ))}
           </tr>
@@ -62,30 +54,12 @@ export default function CustomTable({ heads, rows }: TCustomTableProps) {
               </td>
             </tr>
           )}
-          {Array.isArray(rows) &&
+          {/* {Array.isArray(rows) &&
             rows.map((row, index) => (
               <tr key={index}>
                 {heads.map((head) => (
                   <td key={head}>{row[head]}</td>
                 ))}
-              </tr>
-            ))}
-          {/* {Array.isArray(allUsers) &&
-            allUsers?.map((user) => (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.surname}</td>
-                <td>{user.username}</td>
-                <td>
-                  {user.endDate}
-                  <br />
-                  {user.startDate}
-                </td>
-                <td>{user.phone}</td>
-                <td>{user.department}</td>
-                <td>{user.selectedCompany}</td>
-                <td>{user.userStatus}</td>
-                <td>{user.dialogues}</td>
                 <td>
                   <CustomButton variant="outline">Edit</CustomButton>
 
@@ -95,8 +69,46 @@ export default function CustomTable({ heads, rows }: TCustomTableProps) {
                 </td>
               </tr>
             ))} */}
+
+          {Array.isArray(data) &&
+            data?.map((item) => (
+              <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.surname}</td>
+                <td>{item.username}</td>
+                <td>
+                  {item.endDate}
+                  <br />
+                  {item.startDate}
+                </td>
+                <td>{item.phone}</td>
+                <td>{item.department}</td>
+                <td>{item.selectedCompany}</td>
+                <td>{item.userStatus}</td>
+                <td>{item.dialogues}</td>
+                <td>
+                  <CustomButton variant="outline">Edit</CustomButton>
+
+                  <CustomButton variant="outline" onClick={() => deleteUser(item.id)}>
+                    Delete
+                  </CustomButton>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
   )
 }
+
+// const handleUpdateUser = (id: number, userData: Partial<IUser>) => {
+//   dispatch(updateUser({ id, userData }))
+// }
+
+// const handleDeleteUser = (id: number) => {
+//   dispatch(deleteUser({ id }))
+// }
+
+// const handleAddUser = (newUser: IUser) => {
+//   dispatch(addUser(newUser))
+// }

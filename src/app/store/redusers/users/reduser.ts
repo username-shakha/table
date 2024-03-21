@@ -15,21 +15,21 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     updateUser: (
-      state,
+      { allUsers },
       {
         payload: { id, userData },
       }: PayloadAction<{ id: number; userData: Partial<IUser> }>
     ) => {
-      const userIndex = state.allUsers.findIndex((user) => user.id === id)
+      const userIndex = allUsers.findIndex((user) => user.id === id)
       if (userIndex !== -1) {
-        state.allUsers[userIndex] = { ...state.allUsers[userIndex], ...userData }
+        allUsers[userIndex] = { ...allUsers[userIndex], ...userData }
       }
     },
-    deleteUser: (state, { payload: id }: PayloadAction<number>) => {
-      state.allUsers = state.allUsers.filter((user) => user.id !== id)
+    deleteUser: ({ allUsers }, { payload: id }: PayloadAction<number>) => {
+      allUsers.filter((user) => user.id !== id)
     },
-    addUser: (state, { payload: user }: PayloadAction<IUser>) => {
-      state.allUsers.push(user)
+    addUser: ({ allUsers }, { payload: user }: PayloadAction<IUser>) => {
+      allUsers.push(user)
     },
   },
 })
