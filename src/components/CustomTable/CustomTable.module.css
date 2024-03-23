@@ -1,21 +1,21 @@
 /* //word-break: break-all; */
 .head {
-  height: 50px;
-  /* color: #333333; */
-  color: rgba(0, 0, 0, 0.6);
-  background-color: #f2f2f2;
-  /* background-color: rgba(245, 246, 248, 0.5); */
+    height: 50px;
+    /* color: #333333; */
+    color: rgba(0, 0, 0, 0.6);
+    background-color: #f2f2f2;
+    /* background-color: rgba(245, 246, 248, 0.5); */
 }
 
 table,
 td {
-  text-align: center;
-  padding: 15px;
-  border: 1px solid #dddddd;
+    text-align: center;
+    padding: 15px;
+    border: 1px solid #dddddd;
 }
 
 tr td:last-child {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }

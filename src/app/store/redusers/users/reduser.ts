@@ -3,36 +3,35 @@ import { IUser } from '../../../../shared/lib/types'
 import { allUsersData } from '../../../../data'
 
 interface IInitialState {
-  allUsers: IUser[]
+    allUsers: IUser[]
 }
 
 const initialState: IInitialState = {
-  allUsers: allUsersData,
+    allUsers: allUsersData,
 }
 
 const userSlice = createSlice({
-  name: 'users',
-  initialState,
-  reducers: {
-    updateUser: (
-      { allUsers },
-      {
-        payload: { id, userData },
-      }: PayloadAction<{ id: number; userData: Partial<IUser> }>
-    ) => {
-      const userIndex = allUsers.findIndex((user) => user.id === id)
-      if (userIndex !== -1) {
-        allUsers[userIndex] = { ...allUsers[userIndex], ...userData }
-      }
+    name: 'users',
+    initialState,
+    reducers: {
+        updateUser: (
+            { allUsers },
+            { payload: { updatedUser, id } }: PayloadAction<{ updatedUser: IUser; id: IUser['id'] }>
+        ) => {
+            allUsers.splice(findUserIndexById(allUsers, id), 1, updatedUser)
+        },
+        deleteUser: ({ allUsers }, { payload: id }: PayloadAction<IUser['id']>) => {
+            allUsers.splice(findUserIndexById(allUsers, id), 1)
+        },
+        addUser: ({ allUsers }, { payload: user }: PayloadAction<IUser>) => {
+            allUsers.push(user)
+        },
     },
-    deleteUser: ({ allUsers }, { payload: id }: PayloadAction<number>) => {
-      allUsers.filter((user) => user.id !== id)
-    },
-    addUser: ({ allUsers }, { payload: user }: PayloadAction<IUser>) => {
-      allUsers.push(user)
-    },
-  },
 })
+
+function findUserIndexById(users: IUser[], id: number): number {
+    return users.findIndex((user) => user.id === id)
+}
 
 export const { updateUser, deleteUser, addUser } = userSlice.actions
 export default userSlice.reducer

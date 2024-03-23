@@ -1,40 +1,40 @@
 .form {
-  width: 30rem;
-  .heading {
-    text-align: center;
-    font-weight: normal;
-    padding: 0.5rem 0;
-  }
-  .select {
-    width: 100%;
-    display: block;
-    min-height: 35px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    outline: none;
-    font-size: 14px;
-    padding-left: 10px;
-  }
-  .date {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .radio {
-    display: flex;
-    align-items: center;
-
-    input[type='radio'] {
-      cursor: pointer;
-      width: 18px;
-      height: 18px;
-      /* transition: 0.4s; */
+    width: 30rem;
+    .heading {
+        text-align: center;
+        font-weight: normal;
+        padding: 0.5rem 0;
     }
-
-    label {
-      cursor: pointer;
-      padding-left: 5px;
-      margin: 0;
+    .select {
+        width: 100%;
+        display: block;
+        min-height: 35px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        outline: none;
+        font-size: 14px;
+        padding-left: 10px;
     }
-  }
+    .date {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .radio {
+        display: flex;
+        align-items: center;
+
+        input[type='radio'] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            /* transition: 0.4s; */
+        }
+
+        label {
+            cursor: pointer;
+            padding-left: 5px;
+            margin: 0;
+        }
+    }
 }

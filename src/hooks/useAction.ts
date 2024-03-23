@@ -4,14 +4,14 @@ import { bindActionCreators } from '@reduxjs/toolkit'
 import { updateUser, addUser, deleteUser } from '../app/store/redusers/users/reduser'
 
 const rootActions = {
-  updateUser,
-  addUser,
-  deleteUser,
+    updateUser,
+    addUser,
+    deleteUser,
 }
 
 export default function useAction() {
-  const dispatch = useDispatch()
-  return useMemo(() => {
-    return bindActionCreators(rootActions, dispatch)
-  }, [dispatch])
+    const dispatch = useDispatch()
+    return useMemo(() => {
+        return bindActionCreators(rootActions, dispatch)
+    }, [dispatch])
 }
