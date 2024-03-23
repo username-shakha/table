@@ -1,5 +1,5 @@
 //import { ReactNode } from 'react'
-import { TUser } from '../../shared/lib/types'
+import { TUser } from '../../types'
 
 export const heads: { key: keyof TUser | 'date' | 'action'; label: string }[] = [
     // { key: 'id', label: 'ID' },
@@ -44,14 +44,3 @@ export const heads: { key: keyof TUser | 'date' | 'action'; label: string }[] = 
         label: 'action',
     },
 ]
-
-// 'Имя',
-//   'Фамилия',
-//   'User Name',
-//   'График работы',
-//   'Телефон',
-//   'Компания',
-//   'Отдел',
-//   'Статус',
-//   'Диалогов в работе',
-//   'Action',

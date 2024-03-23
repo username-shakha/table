@@ -1,10 +1,7 @@
-//import { updateUser } from '../../app/store/redusers/users/reduser'
-import useAction from '../../hooks/useAction'
-//import { IUser } from '../../shared/lib/types'
-import CustomButton from '../CustomButton/CustomButton'
-import styles from './CustomTable.module.css'
-
 import { ReactNode } from 'react'
+import CustomButton from '../CustomButton/CustomButton'
+
+import styles from './CustomTable.module.css'
 
 type THeads = {
     key: string
@@ -19,6 +16,7 @@ type TCustomTableProps = {
 }
 
 export default function CustomTable({ heads, rows, handleUpdate, handleDelete }: TCustomTableProps) {
+    //useGet hook
     // const BASE_URL = import.meta.env.VITE_BASEURL
     // const [fetchTableData, { data: tableData, loading: tableDataLoading, error: tableDataError }] = useFetchData(
     //     `${BASE_URL}/users`
@@ -27,7 +25,6 @@ export default function CustomTable({ heads, rows, handleUpdate, handleDelete }:
     //     fetchTableData()
     // }, [fetchTableData])
 
-    const { deleteUser } = useAction()
     return (
         <div>
             <table
@@ -73,7 +70,7 @@ export default function CustomTable({ heads, rows, handleUpdate, handleDelete }:
                                             <CustomButton
                                                 variant="outline"
                                                 onClick={() => {
-                                                    if (typeof row['id'] === 'number') deleteUser(row['id'])
+                                                    if (typeof row['id'] === 'number') handleDelete(row['id'])
                                                 }}
                                             >
                                                 Delete
@@ -95,10 +92,10 @@ export default function CustomTable({ heads, rows, handleUpdate, handleDelete }:
 //   dispatch(updateUser({ id, userData }))
 // }
 
-// const handleDeleteUser = (id: number) => {
-//   dispatch(deleteUser({ id }))
+// const handleremoveUser = (id: number) => {
+//   dispatch(removeUser({ id }))
 // }
 
-// const handleAddUser = (newUser: IUser) => {
-//   dispatch(addUser(newUser))
+// const handlecreateUser = (newUser: IUser) => {
+//   dispatch(createUser(newUser))
 // }

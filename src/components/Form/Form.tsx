@@ -1,15 +1,16 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-import useAction from '../../hooks/useAction'
+
 import CustomButton from '../CustomButton/CustomButton'
 import styles from './Form.module.css'
-import { IUser } from '../../shared/lib/types'
+import { TUser } from '../../types'
+import useAppActions from '../../hooks/redux'
 
 interface FormProps {
-    initialData?: IUser
+    initialData?: TUser
 }
 
 export function Form({ initialData }: FormProps) {
-    const { addUser, updateUser } = useAction()
+    const { createUser, updateUser } = useAppActions()
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
     const [username, setUsername] = useState('')
@@ -53,11 +54,11 @@ export function Form({ initialData }: FormProps) {
             dialogues,
         }
 
-        // Диспетчим действие addUser с данными нового пользователя
+        // Диспетчим действие createUser с данными нового пользователя
         if (initialData) {
-            updateUser({ updatedUser: newUser, id: initialData.id })
+            updateUser({ user: newUser, id: initialData.id })
         } else {
-            addUser(newUser)
+            createUser(newUser)
         }
 
         // Очищаем форму после отправки

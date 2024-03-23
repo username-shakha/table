@@ -1,4 +1,6 @@
-export const allUsersData = [
+import { TUser } from '../types'
+
+export const users: TUser[] = [
     {
         id: 1,
         name: 'John',
