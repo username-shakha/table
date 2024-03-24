@@ -13,7 +13,7 @@ interface FormProps {
     initialData?: TUserApi
 }
 
-export function Form({ initialData }: FormProps) {
+export default function Form({ initialData }: FormProps) {
     //api hook
     const { createUser, updateUser } = useUserManagement()
 

@@ -1,28 +1,7 @@
 import { useState } from 'react'
-
-//api data hook
-import useUserManagement from '../hooks/useUserManagement'
-
-//userSlice
-// import { selectUsers } from '../features/selectors'
-// import useAppActions, { useAppSelector } from '../hooks/redux'
-
-//dialog hook
-import { useOverlayState } from '../hooks/useOverlayState'
-
-//components
-import { Form } from '../components/Form/Form'
-import Modal from '../components/Modal/Modal'
-import Container from '../components/Container/Container'
-import CustomButton from '../components/CustomButton/CustomButton'
-import CustomTable from '../components/CustomTable/CustomTable'
-
-//constants & types
-import { heads } from '../components/CustomTable/constants'
-
-//sass
-import './style.sass'
-import { TUserApi } from '../api'
+import { useOverlayState, useUserManagement } from '@/hooks'
+import { Container, CustomButton, CustomTable, Form, heads, Modal } from '@/components'
+import { TUserApi } from '@/api'
 
 //remove user dialog. output: => current user.username
 const UserName = ({ data, id }: { data: TUserApi[] | undefined; id: string | null | TUserApi }) => {
