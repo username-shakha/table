@@ -1,19 +1,19 @@
 import { ReactNode, ButtonHTMLAttributes } from 'react'
-import styles from './CustomButton.module.css'
+import './style.sass'
 interface ICustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant: 'outline' | 'rounded' | 'dashed' | 'double' | 'underlined'
     children: ReactNode
 }
 
 export default function CustomButton({ variant, children, ...props }: ICustomButtonProps) {
-    let buttonClasses = styles.button
-    if (variant === 'outline') buttonClasses += ` ${styles.outline}`
-    if (variant === 'rounded') buttonClasses += ` ${styles.rounded}`
-    if (variant === 'dashed') buttonClasses += ` ${styles.dashed}`
-    if (variant === 'double') buttonClasses += ` ${styles.double}`
-    if (variant === 'underlined') buttonClasses += ` ${styles.underlined}`
+    let classes = ''
+    if (variant === 'outline') classes += `outline`
+    if (variant === 'rounded') classes += `rounded`
+    if (variant === 'dashed') classes += `dashed`
+    if (variant === 'double') classes += `double`
+    if (variant === 'underlined') classes += `underlined`
     return (
-        <button {...props} className={buttonClasses}>
+        <button {...props} className={classes}>
             {children}
         </button>
     )

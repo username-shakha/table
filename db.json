@@ -1,30 +1,69 @@
 {
-    "users": [
-        {
-            "id": 1,
-            "name": "John",
-            "surname": "Doe",
-            "username": "john_doe",
-            "startDate": "12.04.2002",
-            "endDate": "10.12.2014",
-            "phone": "+1234567890",
-            "selectedCompany": "Example Corp",
-            "department": "IT",
-            "userStatus": "active",
-            "dialogues": "text"
-        },
-        {
-            "id": 2,
-            "name": "John",
-            "surname": "Doe",
-            "username": "john_doe",
-            "startDate": "12.04.2002",
-            "endDate": "10.12.2014",
-            "phone": "+1234567890",
-            "selectedCompany": "Example Corp",
-            "department": "IT",
-            "userStatus": "active",
-            "dialogues": "text"
-        }
-    ]
+  "users": [
+    {
+      "id": "75b4",
+      "name": "Keefe Morgan",
+      "surname": "Murray",
+      "username": "tahobe",
+      "startDate": "1982-07-16",
+      "endDate": "1976-04-13",
+      "phone": "+1 (203) 421-8761",
+      "selectedCompany": "company3",
+      "department": "Ullam distinctio Ex",
+      "userStatus": "active",
+      "dialogues": "Facere deserunt eaqu"
+    },
+    {
+      "id": "3ef6",
+      "name": "Rigel Baxter",
+      "surname": "Slater",
+      "username": "bymimova",
+      "startDate": "1998-01-13",
+      "endDate": "1996-11-17",
+      "phone": "+1 (707) 561-7494",
+      "selectedCompany": "company3",
+      "department": "Minima sunt cumque e",
+      "userStatus": "active",
+      "dialogues": "Incididunt et est mo"
+    },
+    {
+      "id": "7ea9",
+      "name": "Ursa Castro",
+      "surname": "Garza",
+      "username": "wuzolybax",
+      "startDate": "1980-10-26",
+      "endDate": "1999-11-14",
+      "phone": "+1 (325) 648-5349",
+      "selectedCompany": "company2",
+      "department": "Quo pariatur Facili",
+      "userStatus": "active",
+      "dialogues": "Aliquip illum solut"
+    },
+    {
+      "id": "22aa",
+      "name": "Dara Stone",
+      "surname": "Lloyd",
+      "username": "lowyj",
+      "startDate": "2011-09-19",
+      "endDate": "1986-02-13",
+      "phone": "+1 (887) 275-1709",
+      "selectedCompany": "company1",
+      "department": "Obcaecati illum ut ",
+      "userStatus": "active",
+      "dialogues": "Nisi et voluptatibus"
+    },
+    {
+      "id": "e968",
+      "name": "Tara Stephens",
+      "surname": "Rowland",
+      "username": "sahis",
+      "startDate": "2010-02-01",
+      "endDate": "1979-07-15",
+      "phone": "+1 (363) 149-7245",
+      "selectedCompany": "company2",
+      "department": "Eligendi magni id ma",
+      "userStatus": "active",
+      "dialogues": "Voluptate exercitati"
+    }
+  ]
 }

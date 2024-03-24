@@ -5,7 +5,11 @@ import List from './sections/List'
 
 //<RouterProvider router={router}></RouterProvider>
 function App() {
-    return <List />
+    return (
+        <>
+            <List />
+        </>
+    )
 }
 
 export default App

@@ -1,16 +1,22 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-
+//hook
+import useUserManagement from '../../hooks/useUserManagement'
+//components
 import CustomButton from '../CustomButton/CustomButton'
-import styles from './Form.module.css'
-import { TUser } from '../../types'
-import useAppActions from '../../hooks/redux'
+//types
 
+import styles from './Form.module.css'
+import { TUserApi } from '../../api'
+
+//props
 interface FormProps {
-    initialData?: TUser
+    initialData?: TUserApi
 }
 
 export function Form({ initialData }: FormProps) {
-    const { createUser, updateUser } = useAppActions()
+    //api hook
+    const { createUser, updateUser } = useUserManagement()
+
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
     const [username, setUsername] = useState('')
@@ -41,7 +47,7 @@ export function Form({ initialData }: FormProps) {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const newUser = {
-            id: Math.random(), // Генерируем временный ID
+            //  id: String(Math.random()), // Генерируем временный ID
             name,
             surname,
             username,
@@ -55,10 +61,12 @@ export function Form({ initialData }: FormProps) {
         }
 
         // Диспетчим действие createUser с данными нового пользователя
-        if (initialData) {
-            updateUser({ user: newUser, id: initialData.id })
-        } else {
+        if (!initialData) {
+            //create user api
             createUser(newUser)
+        } else {
+            //update user api
+            updateUser({ userId: initialData.id, userData: newUser })
         }
 
         // Очищаем форму после отправки

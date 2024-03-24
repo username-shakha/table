@@ -1,83 +1,74 @@
-import { ReactNode } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 import CustomButton from '../CustomButton/CustomButton'
 
-import styles from './CustomTable.module.css'
+// import styles from './CustomTable.module.css'
+import './style.sass'
 
-type THeads = {
+import { TUserApi } from '../../api'
+
+export type THeads = {
     key: string
     label: ReactNode
+    style?: CSSProperties
 }
 
 type TCustomTableProps = {
+    isLoading: boolean
     rows: Record<string, ReactNode>[]
     heads: Array<THeads>
-    handleUpdate: (id: number) => void
-    handleDelete: (id: number) => void
+    handleUpdate: (user: TUserApi) => void
+    handleDelete: (id: string) => void
 }
 
-export default function CustomTable({ heads, rows, handleUpdate, handleDelete }: TCustomTableProps) {
-    //useGet hook
-    // const BASE_URL = import.meta.env.VITE_BASEURL
-    // const [fetchTableData, { data: tableData, loading: tableDataLoading, error: tableDataError }] = useFetchData(
-    //     `${BASE_URL}/users`
-    // )
-    // useEffect(() => {
-    //     fetchTableData()
-    // }, [fetchTableData])
-
+export default function CustomTable({ isLoading, heads, rows, handleUpdate, handleDelete }: TCustomTableProps) {
     return (
         <div>
-            <table
-                style={{
-                    width: '100%',
-                    textAlign: 'center',
-                    borderCollapse: 'collapse',
-                    boxShadow: '0px 0px 10px 0px rgba(0, 0, 0, 0.05)',
-                }}
-            >
+            <table>
                 <thead>
                     <tr>
                         {heads &&
                             heads.map((head, i) => (
-                                <th className={styles.head} key={i}>
+                                <th style={{ width: '110px', ...head.style }} key={i}>
                                     {head.label}
                                 </th>
                             ))}
                     </tr>
                 </thead>
                 <tbody>
-                    {false && (
+                    {isLoading && (
                         <tr>
-                            <td style={{ textAlign: 'center', padding: '16px' }} colSpan={heads.length}>
+                            <td
+                                style={{ display: 'table-cell', textAlign: 'center', padding: '16px' }}
+                                colSpan={heads.length}
+                            >
                                 Loading...
                             </td>
                         </tr>
                     )}
                     {Array.isArray(rows) &&
-                        rows.map((row, index) => (
-                            <tr key={index}>
-                                {heads.map((head, i) => {
+                        rows.map((row, i) => (
+                            <tr key={i}>
+                                {heads.map((head) => {
                                     return head.key === 'action' ? (
-                                        <td key={i}>
+                                        <td key={head.key} style={head.style}>
                                             <CustomButton
+                                                style={{ marginRight: '15px' }}
                                                 variant="outline"
-                                                onClick={() => {
-                                                    if (typeof row['id'] === 'number') handleUpdate(row['id'])
-                                                }}
+                                                onClick={() => handleUpdate(row as TUserApi)}
                                             >
                                                 Edit
                                             </CustomButton>
                                             <CustomButton
                                                 variant="outline"
-                                                onClick={() => {
-                                                    if (typeof row['id'] === 'number') handleDelete(row['id'])
-                                                }}
+                                                onClick={() => handleDelete(row.id as string)}
                                             >
                                                 Delete
                                             </CustomButton>
                                         </td>
+                                    ) : head.key === 'date' ? (
+                                        <td key={head.key}>{row[head.key]}</td>
                                     ) : (
-                                        <td key={i}>{row[head.key]}</td>
+                                        <td key={head.key}>{row[head.key]}</td>
                                     )
                                 })}
                             </tr>
@@ -87,15 +78,3 @@ export default function CustomTable({ heads, rows, handleUpdate, handleDelete }:
         </div>
     )
 }
-
-// const handleUpdateUser = (id: number, userData: Partial<IUser>) => {
-//   dispatch(updateUser({ id, userData }))
-// }
-
-// const handleremoveUser = (id: number) => {
-//   dispatch(removeUser({ id }))
-// }
-
-// const handlecreateUser = (newUser: IUser) => {
-//   dispatch(createUser(newUser))
-// }
