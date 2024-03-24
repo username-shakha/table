@@ -1,9 +1,7 @@
-//import { ReactNode } from 'react'
-
 import { CSSProperties } from 'react'
-import { TUser } from '../../types'
+import { TUser_Query } from '@/types'
 
-export const heads: { key: keyof TUser | 'date' | 'action'; label: string; style?: CSSProperties }[] = [
+export const heads: { key: keyof TUser_Query | 'date' | 'action'; label: string; style?: CSSProperties }[] = [
     // { key: 'id', label: 'ID' },
     {
         key: 'name',

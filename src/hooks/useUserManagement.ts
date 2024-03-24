@@ -1,4 +1,4 @@
-import { useGetUsersQuery, useCreateUserMutation, useDeleteUserMutation, useUpdateUserMutation } from '../api'
+import { useCreateUserMutation, useDeleteUserMutation, useGetUsersQuery, useUpdateUserMutation } from '@/api'
 
 const useUserManagement = () => {
     const getUsersQuery = useGetUsersQuery()

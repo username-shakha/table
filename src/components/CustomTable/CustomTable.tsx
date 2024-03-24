@@ -3,8 +3,7 @@ import CustomButton from '../CustomButton/CustomButton'
 
 // import styles from './CustomTable.module.css'
 import './style.sass'
-
-import { TUserApi } from '../../api'
+import { TUser_Query_id } from '@/types'
 
 export type THeads = {
     key: string
@@ -16,7 +15,7 @@ type TCustomTableProps = {
     isLoading: boolean
     rows: Record<string, ReactNode>[]
     heads: Array<THeads>
-    handleUpdate: (user: TUserApi) => void
+    handleUpdate: (user: TUser_Query_id) => void
     handleDelete: (id: string) => void
 }
 
@@ -53,7 +52,7 @@ export default function CustomTable({ isLoading, heads, rows, handleUpdate, hand
                                         <CustomButton
                                             style={{ marginRight: '15px' }}
                                             variant="outline"
-                                            onClick={() => handleUpdate(row as TUserApi)}
+                                            onClick={() => handleUpdate(row as TUser_Query_id)}
                                         >
                                             Edit
                                         </CustomButton>

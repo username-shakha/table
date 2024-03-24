@@ -1,14 +1,8 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { bindActionCreators } from '@reduxjs/toolkit'
 import { useMemo } from 'react'
-import type { RootState, AppDispatch } from '../../configureStore'
-import { updateUser, removeUser, createUser } from '../../features/user/index'
-
-const userActions = {
-    updateUser,
-    removeUser,
-    createUser,
-}
+import type { AppDispatch, RootState } from '@/configureStore'
+import * as userActions from '@/features/user'
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector

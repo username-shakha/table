@@ -1,16 +1,12 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-//hook
-import useUserManagement from '../../hooks/useUserManagement'
-//components
+import { useUserManagement } from '@/hooks'
 import CustomButton from '../CustomButton/CustomButton'
-//types
-
+import { TUser_Query_id } from '@/types'
 import styles from './Form.module.css'
-import { TUserApi } from '../../api'
 
 //props
 interface FormProps {
-    initialData?: TUserApi
+    initialData?: TUser_Query_id
 }
 
 export default function Form({ initialData }: FormProps) {
@@ -61,12 +57,12 @@ export default function Form({ initialData }: FormProps) {
         }
 
         // Диспетчим действие createUser с данными нового пользователя
-        if (!initialData) {
+        if (initialData === undefined) {
             //create user api
             createUser(newUser)
         } else {
             //update user api
-            updateUser({ userId: initialData.id, userData: newUser })
+            updateUser({ id: initialData.id, user: { ...newUser, id: initialData.id } })
         }
 
         // Очищаем форму после отправки

@@ -1,20 +1,12 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 import { createApi } from '@reduxjs/toolkit/query/react'
-//import { TUser } from '../types'
+import { TUser_Query, TUser_Query_id } from '@/types'
 
-export type TUserApi = {
-    id: string
-    name: string
-    surname: string
-    username: string
-    startDate: string
-    endDate: string
-    phone: string
-    selectedCompany: string
-    department: string
-    userStatus: string
-    dialogues: string
-}
+const tagTypes = () => [
+    {
+        type: 'users' as const,
+    },
+]
 
 export const api = createApi({
     reducerPath: 'api',
@@ -23,65 +15,38 @@ export const api = createApi({
         baseUrl: `${import.meta.env.VITE_BASEURL}/users`,
     }),
     endpoints: (builder) => ({
-        getUsers: builder.query<TUserApi[], void>({
+        getUsers: builder.query<TUser_Query_id[], void>({
             query: () => '/',
-            providesTags: () => [
-                {
-                    type: 'users',
-                },
-            ],
+            providesTags: tagTypes,
         }),
-        createUser: builder.mutation({
+        createUser: builder.mutation<void, TUser_Query>({
             query: (user) => ({
                 url: '/',
                 method: 'POST',
                 body: user,
             }),
-            invalidatesTags: () => [
-                {
-                    type: 'users',
-                },
-            ],
+            invalidatesTags: tagTypes,
         }),
-        deleteUser: builder.mutation<void, string>({
+        deleteUser: builder.mutation<void, TUser_Query_id['id']>({
             query: (id) => ({
                 url: `/${id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: () => [
-                {
-                    type: 'users',
-                },
-            ],
+            invalidatesTags: tagTypes,
         }),
         updateUser: builder.mutation<
             void,
             {
-                userId: string
-                userData: {
-                    name: string
-                    surname: string
-                    username: string
-                    startDate: string
-                    endDate: string
-                    phone: string
-                    selectedCompany: string
-                    department: string
-                    userStatus: string
-                    dialogues: string
-                }
+                id: TUser_Query_id['id']
+                user: TUser_Query_id
             }
         >({
-            query: ({ userId, userData }) => ({
-                body: userData,
-                url: `/${userId}`,
+            query: ({ id, user }) => ({
+                body: user,
+                url: `/${id}`,
                 method: 'PUT',
             }),
-            invalidatesTags: () => [
-                {
-                    type: 'users',
-                },
-            ],
+            invalidatesTags: tagTypes,
         }),
     }),
 })

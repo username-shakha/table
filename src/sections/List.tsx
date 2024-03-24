@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import { useOverlayState, useUserManagement } from '@/hooks'
 import { Container, CustomButton, CustomTable, Form, heads, Modal } from '@/components'
-import { TUserApi } from '@/api'
+import { TUser_Query_id } from '@/types'
 
 //remove user dialog. output: => current user.username
-const UserName = ({ data, id }: { data: TUserApi[] | undefined; id: string | null | TUserApi }) => {
+const UserName = ({ data, id }: { data: TUser_Query_id[] | undefined; id: string | null | TUser_Query_id }) => {
     if (data !== undefined && id !== null)
         return <h3>user name: {data.map((user) => user.id === id && user.username)}</h3>
 }
 
 function List() {
-    //useGet hook api data
+    //useGet hook mockapi api data
     // const BASE_URL = import.meta.env.VITE_BASEURL
     // const [fetchTableData, { data: tableData, loading: tableDataLoading, error: tableDataError }] = useFetchData(
     //     `${BASE_URL}/users`
@@ -19,7 +19,7 @@ function List() {
     //     fetchTableData()
     // }, [fetchTableData])
 
-    //api data
+    //useUserManagement hook json-server api data
     const { deleteUser, getUsers, isDeleteLoading } = useUserManagement()
     const { data: usersFetchData, isLoading: usersFetchLoading, isError: usersFetchError } = getUsers //get all users
 
@@ -33,10 +33,10 @@ function List() {
     const removeDialogState = useOverlayState()
 
     //current user.id
-    const [currentUser, setCurrentUser] = useState<string | null | TUserApi>(null)
+    const [currentUser, setCurrentUser] = useState<string | null | TUser_Query_id>(null)
 
     //current user.id handler
-    const currentUserHandler = (id: string | null | TUserApi) => {
+    const currentUserHandler = (id: string | null | TUser_Query_id) => {
         if (id !== null && typeof id !== 'object') {
             deleteUser(id)
             setCurrentUser(null)
@@ -49,8 +49,8 @@ function List() {
     return (
         <>
             <header className="list-header">
-                <Container maxWidth="xl">
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Container maxWidth="xl" style={{ margin: '30px 0px' }}>
+                    <div style={headerStyles}>
                         <h3 style={{ paddingLeft: '15px' }}>Добавить нового пользователя</h3>
                         <CustomButton variant="outline" onClick={() => createDialogState.open()}>
                             Добавить
@@ -62,7 +62,7 @@ function List() {
             <Container maxWidth="xl">
                 <CustomTable
                     isLoading={usersFetchLoading}
-                    rows={usersFetchData as TUserApi[]}
+                    rows={usersFetchData as TUser_Query_id[]}
                     heads={heads}
                     handleUpdate={(user) => {
                         setCurrentUser(user)
@@ -123,6 +123,14 @@ function List() {
             </Container>
         </>
     )
+}
+
+const headerStyles = {
+    padding: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.2)',
 }
 
 export default List
