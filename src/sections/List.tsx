@@ -13,7 +13,7 @@ import { useOverlayState } from '../hooks/useOverlayState'
 //components
 import { Form } from '../components/Form/Form'
 import Modal from '../components/Modal/Modal'
-import Container from '../components/WrapperContainer/Container'
+import Container from '../components/Container/Container'
 import CustomButton from '../components/CustomButton/CustomButton'
 import CustomTable from '../components/CustomTable/CustomTable'
 
@@ -68,72 +68,81 @@ function List() {
     // Page Not Found isError
     if (usersFetchError) return <div>Page Not Found</div>
     return (
-        <Container>
+        <>
             <header className="list-header">
-                <h3 style={{ paddingLeft: '15px' }}>Добавить нового пользователя</h3>
-                <CustomButton variant="outline" onClick={() => createDialogState.open()}>
-                    Добавить
-                </CustomButton>
+                <Container maxWidth="xl">
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <h3 style={{ paddingLeft: '15px' }}>Добавить нового пользователя</h3>
+                        <CustomButton variant="outline" onClick={() => createDialogState.open()}>
+                            Добавить
+                        </CustomButton>
+                    </div>
+                </Container>
             </header>
 
-            <CustomTable
-                isLoading={usersFetchLoading}
-                rows={usersFetchData as TUserApi[]}
-                heads={heads}
-                handleUpdate={(user) => {
-                    setCurrentUser(user)
-                    updateDialogState.open()
-                }}
-                handleDelete={(id) => {
-                    setCurrentUser(id)
-                    removeDialogState.open()
-                }}
-            />
+            <Container maxWidth="xl">
+                <CustomTable
+                    isLoading={usersFetchLoading}
+                    rows={usersFetchData as TUserApi[]}
+                    heads={heads}
+                    handleUpdate={(user) => {
+                        setCurrentUser(user)
+                        updateDialogState.open()
+                    }}
+                    handleDelete={(id) => {
+                        setCurrentUser(id)
+                        removeDialogState.open()
+                    }}
+                />
 
-            <Modal isOpen={updateDialogState.isOpen} onClose={updateDialogState.close}>
-                <p>update user</p>
-                {typeof currentUser === 'object' && currentUser !== null && <Form initialData={currentUser} />}
-            </Modal>
+                <Modal isOpen={updateDialogState.isOpen} onClose={updateDialogState.close}>
+                    <p>update user</p>
+                    {typeof currentUser === 'object' && currentUser !== null && <Form initialData={currentUser} />}
+                </Modal>
 
-            <Modal isOpen={createDialogState.isOpen} onClose={createDialogState.close}>
-                <p>create user</p>
-                <Form />
-            </Modal>
+                <Modal isOpen={createDialogState.isOpen} onClose={createDialogState.close}>
+                    <p>create user</p>
+                    <Form />
+                </Modal>
 
-            <Modal isOpen={removeDialogState.isOpen} onClose={removeDialogState.close}>
-                <div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            gap: '40px',
-                            height: '60px',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                        }}
-                    >
-                        <h4>Вы уверены что хотите удалить этого пользователя?</h4>
-                        <p onClick={() => removeDialogState.close()} style={{ cursor: 'pointer', fontSize: '40px' }}>
-                            &times;
-                        </p>
-                    </div>
-                    <UserName data={getUsers.data} id={currentUser} />
-                    <div className="remove-dialog">
-                        <CustomButton
-                            variant="outline"
-                            onClick={() => {
-                                setCurrentUser(null)
-                                removeDialogState.close()
+                <Modal isOpen={removeDialogState.isOpen} onClose={removeDialogState.close}>
+                    <div>
+                        <div
+                            style={{
+                                display: 'flex',
+                                gap: '40px',
+                                height: '60px',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
                             }}
                         >
-                            Отменить
-                        </CustomButton>
-                        <CustomButton variant="outline" onClick={() => currentUserHandler(currentUser)}>
-                            {isDeleteLoading ? 'Удаление...' : 'Да'}
-                        </CustomButton>
+                            <h4>Вы уверены что хотите удалить этого пользователя?</h4>
+                            <p
+                                onClick={() => removeDialogState.close()}
+                                style={{ cursor: 'pointer', fontSize: '40px' }}
+                            >
+                                &times;
+                            </p>
+                        </div>
+                        <UserName data={getUsers.data} id={currentUser} />
+                        <div className="remove-dialog">
+                            <CustomButton
+                                variant="outline"
+                                onClick={() => {
+                                    setCurrentUser(null)
+                                    removeDialogState.close()
+                                }}
+                            >
+                                Отменить
+                            </CustomButton>
+                            <CustomButton variant="outline" onClick={() => currentUserHandler(currentUser)}>
+                                {isDeleteLoading ? 'Удаление...' : 'Да'}
+                            </CustomButton>
+                        </div>
                     </div>
-                </div>
-            </Modal>
-        </Container>
+                </Modal>
+            </Container>
+        </>
     )
 }
 

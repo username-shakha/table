@@ -8,27 +8,27 @@ export const heads: { key: keyof TUser | 'date' | 'action'; label: string; style
     {
         key: 'name',
         label: 'Имя',
-        style: { width: '80px' },
+        style: { minWidth: '80px' },
     },
     {
         key: 'surname',
         label: 'Фамилия',
-        style: { width: '80px' },
+        style: { minWidth: '80px' },
     },
     {
         key: 'username',
         label: 'User Name',
-        style: { width: '40px', padding: ' 0px 20px ' },
+        style: { minWidth: '40px', padding: ' 0px 20px ' },
     },
     {
         key: 'date',
         label: 'График работы',
-        style: { width: '140px' },
+        style: { minWidth: '140px' },
     },
     {
         key: 'phone',
         label: 'Телефон',
-        style: { width: '90px' },
+        style: { minWidth: '90px' },
     },
     {
         key: 'selectedCompany',
@@ -41,7 +41,7 @@ export const heads: { key: keyof TUser | 'date' | 'action'; label: string; style
     {
         key: 'userStatus',
         label: 'Статус',
-        style: { width: '70px' },
+        style: { minWidth: '70px' },
     },
     {
         key: 'dialogues',
@@ -50,6 +50,6 @@ export const heads: { key: keyof TUser | 'date' | 'action'; label: string; style
     {
         key: 'action',
         label: 'action',
-        style: { width: '190px' },
+        style: { minWidth: '140px', width: '150px' },
     },
 ]
