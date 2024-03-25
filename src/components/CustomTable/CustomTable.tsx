@@ -1,21 +1,13 @@
-import { CSSProperties, ReactNode } from 'react'
+import { ReactNode } from 'react'
 import CustomButton from '../CustomButton/CustomButton'
-
-// import styles from './CustomTable.module.css'
+import { THeads, TUser_Query } from '@/types'
 import './style.sass'
-import { TUser_Query_id } from '@/types'
-
-export type THeads = {
-    key: string
-    label: ReactNode
-    style?: CSSProperties
-}
 
 type TCustomTableProps = {
     isLoading: boolean
     rows: Record<string, ReactNode>[]
     heads: Array<THeads>
-    handleUpdate: (user: TUser_Query_id) => void
+    handleUpdate: (user: TUser_Query) => void
     handleDelete: (id: string) => void
 }
 
@@ -52,7 +44,7 @@ export default function CustomTable({ isLoading, heads, rows, handleUpdate, hand
                                         <CustomButton
                                             style={{ marginRight: '15px' }}
                                             variant="outline"
-                                            onClick={() => handleUpdate(row as TUser_Query_id)}
+                                            onClick={() => handleUpdate(row as TUser_Query)}
                                         >
                                             Edit
                                         </CustomButton>

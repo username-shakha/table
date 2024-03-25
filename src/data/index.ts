@@ -1,6 +1,6 @@
-import { TUser } from '../types'
+import { TUser_Slice } from '@/types'
 
-export const users: TUser[] = [
+export const users: TUser_Slice[] = [
     {
         id: 1,
         name: 'John',

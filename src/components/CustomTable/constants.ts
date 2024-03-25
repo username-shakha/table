@@ -1,7 +1,6 @@
-import { CSSProperties } from 'react'
-import { TUser_Query } from '@/types'
+import { TTableUserHeads } from '@/types'
 
-export const heads: { key: keyof TUser_Query | 'date' | 'action'; label: string; style?: CSSProperties }[] = [
+const TABLE_USER_HEADS: TTableUserHeads[] = [
     // { key: 'id', label: 'ID' },
     {
         key: 'name',
@@ -51,3 +50,5 @@ export const heads: { key: keyof TUser_Query | 'date' | 'action'; label: string;
         style: { minWidth: '140px', width: '150px' },
     },
 ]
+
+export default TABLE_USER_HEADS

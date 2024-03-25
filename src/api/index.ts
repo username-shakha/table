@@ -1,6 +1,6 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 import { createApi } from '@reduxjs/toolkit/query/react'
-import { TUser_Query, TUser_Query_id } from '@/types'
+import { TUser_Query } from '@/types'
 
 const tagTypes = () => [
     {
@@ -15,11 +15,11 @@ export const api = createApi({
         baseUrl: `${import.meta.env.VITE_BASEURL}/users`,
     }),
     endpoints: (builder) => ({
-        getUsers: builder.query<TUser_Query_id[], void>({
+        getUsers: builder.query<TUser_Query[], void>({
             query: () => '/',
             providesTags: tagTypes,
         }),
-        createUser: builder.mutation<void, TUser_Query>({
+        createUser: builder.mutation<void, Omit<TUser_Query, 'id'>>({
             query: (user) => ({
                 url: '/',
                 method: 'POST',
@@ -27,7 +27,7 @@ export const api = createApi({
             }),
             invalidatesTags: tagTypes,
         }),
-        deleteUser: builder.mutation<void, TUser_Query_id['id']>({
+        deleteUser: builder.mutation<void, TUser_Query['id']>({
             query: (id) => ({
                 url: `/${id}`,
                 method: 'DELETE',
@@ -37,8 +37,8 @@ export const api = createApi({
         updateUser: builder.mutation<
             void,
             {
-                id: TUser_Query_id['id']
-                user: TUser_Query_id
+                id: TUser_Query['id']
+                user: TUser_Query
             }
         >({
             query: ({ id, user }) => ({

@@ -1,5 +1,5 @@
 //export constants
-export { heads } from './CustomTable/constants'
+export { default as TABLE_USER_HEADS } from './CustomTable/constants'
 
 //export default
 export { default as Container } from './Container/Container'

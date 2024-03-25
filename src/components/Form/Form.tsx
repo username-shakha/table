@@ -1,12 +1,12 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useUserManagement } from '@/hooks'
 import CustomButton from '../CustomButton/CustomButton'
-import { TUser_Query_id } from '@/types'
+import { TUser_Query } from '@/types'
 import styles from './Form.module.css'
 
 //props
 interface FormProps {
-    initialData?: TUser_Query_id
+    initialData?: TUser_Query
 }
 
 export default function Form({ initialData }: FormProps) {

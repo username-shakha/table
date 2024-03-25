@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { TUser } from '../../types'
-import { users } from '../../data'
+import { users } from '@/data'
+import { TUser_Slice } from '@/types'
 
 //actions
-type update = PayloadAction<{ user: TUser; id: TUser['id'] }>
-type remove = PayloadAction<TUser['id']>
-type create = PayloadAction<TUser>
+type Update_PayloadType = PayloadAction<{ user: TUser_Slice; id: TUser_Slice['id'] }>
+type Remove_PayloadType = PayloadAction<TUser_Slice['id']>
+type Create_PayloadType = PayloadAction<TUser_Slice>
 
 // type initialStateType = {
-//     users: TUser[]
+//     users: TUser_Slice[]
 //     posts: TPost[]
 
 // }
@@ -22,19 +22,19 @@ const userSlice = createSlice({
     name: 'users',
     initialState: users,
     reducers: {
-        updateUser: (state, { payload: { user, id } }: update) => {
+        updateUser: (state, { payload: { user, id } }: Update_PayloadType) => {
             state.splice(findUserIndexById(state, id), 1, user)
         },
-        removeUser: (state, { payload: id }: remove) => {
+        removeUser: (state, { payload: id }: Remove_PayloadType) => {
             state.splice(findUserIndexById(state, id), 1)
         },
-        createUser: (state, { payload: user }: create) => {
+        createUser: (state, { payload: user }: Create_PayloadType) => {
             state.push(user)
         },
     },
 })
 
-function findUserIndexById(users: TUser[], id: number): number {
+function findUserIndexById(users: TUser_Slice[], id: number): number {
     return users.findIndex((user) => user.id === id)
 }
 

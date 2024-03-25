@@ -1,13 +1,8 @@
 import { useState } from 'react'
 import { useOverlayState, useUserManagement } from '@/hooks'
-import { Container, CustomButton, CustomTable, Form, heads, Modal } from '@/components'
-import { TUser_Query_id } from '@/types'
-
-//remove user dialog. output: => current user.username
-const UserName = ({ data, id }: { data: TUser_Query_id[] | undefined; id: string | null | TUser_Query_id }) => {
-    if (data !== undefined && id !== null)
-        return <h3>user name: {data.map((user) => user.id === id && user.username)}</h3>
-}
+import { Container, CustomButton, CustomTable, Form, Modal, TABLE_USER_HEADS } from '@/components'
+import { TUser_Query } from '@/types'
+import './style.sass'
 
 function List() {
     //useGet hook mockapi api data
@@ -21,7 +16,7 @@ function List() {
 
     //useUserManagement hook json-server api data
     const { deleteUser, getUsers, isDeleteLoading } = useUserManagement()
-    const { data: usersFetchData, isLoading: usersFetchLoading, isError: usersFetchError } = getUsers //get all users
+    const { data: usersQueryData, isLoading: usersQueryLoading, isError: usersQueryError } = getUsers //get all users
 
     //userSlice
     //const users = useAppSelector(selectUsers)
@@ -33,10 +28,10 @@ function List() {
     const removeDialogState = useOverlayState()
 
     //current user.id
-    const [currentUser, setCurrentUser] = useState<string | null | TUser_Query_id>(null)
+    const [currentUser, setCurrentUser] = useState<string | null | TUser_Query>(null)
 
     //current user.id handler
-    const currentUserHandler = (id: string | null | TUser_Query_id) => {
+    const currentUserHandler = (id: string | null | TUser_Query) => {
         if (id !== null && typeof id !== 'object') {
             deleteUser(id)
             setCurrentUser(null)
@@ -44,8 +39,8 @@ function List() {
         }
     }
 
-    // Page Not Found isError
-    if (usersFetchError) return <div>Page Not Found</div>
+    // Page Not Found isError !!!
+    if (usersQueryError) return <div>Page Not Found</div>
     return (
         <>
             <header className="list-header">
@@ -61,9 +56,9 @@ function List() {
 
             <Container maxWidth="xl">
                 <CustomTable
-                    isLoading={usersFetchLoading}
-                    rows={usersFetchData as TUser_Query_id[]}
-                    heads={heads}
+                    isLoading={usersQueryLoading}
+                    rows={usersQueryData as TUser_Query[]}
+                    heads={TABLE_USER_HEADS}
                     handleUpdate={(user) => {
                         setCurrentUser(user)
                         updateDialogState.open()
@@ -86,24 +81,13 @@ function List() {
 
                 <Modal isOpen={removeDialogState.isOpen} onClose={removeDialogState.close}>
                     <div>
-                        <div
-                            style={{
-                                display: 'flex',
-                                gap: '40px',
-                                height: '60px',
-                                alignItems: 'center',
-                                justifyContent: 'space-between',
-                            }}
-                        >
+                        <div style={removeDialogContentBox}>
                             <h4>Вы уверены что хотите удалить этого пользователя?</h4>
-                            <p
-                                onClick={() => removeDialogState.close()}
-                                style={{ cursor: 'pointer', fontSize: '40px' }}
-                            >
-                                &times;
-                            </p>
                         </div>
-                        <UserName data={getUsers.data} id={currentUser} />
+
+                        {/*username: the user being deleted */}
+                        <UserName data={usersQueryData} id={currentUser} />
+
                         <div className="remove-dialog">
                             <CustomButton
                                 variant="outline"
@@ -131,6 +115,22 @@ const headerStyles = {
     alignItems: 'center',
     justifyContent: 'space-between',
     boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.2)',
+}
+
+const removeDialogContentBox = {
+    display: 'flex',
+    gap: '40px',
+    height: '60px',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+}
+
+//remove user dialog. output: => current user.username
+const UserName = ({ data, id }: { data: TUser_Query[] | undefined; id: string | null | TUser_Query }) => {
+    if (data !== undefined && id !== null)
+        return (
+            <h3 style={{ marginBottom: '30px' }}>user name: {data.map((user) => user.id === id && user.username)}</h3>
+        )
 }
 
 export default List

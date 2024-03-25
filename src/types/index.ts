@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react'
+
 export type TUser_Slice = {
     id: number // number
     name: string
@@ -12,7 +14,15 @@ export type TUser_Slice = {
     dialogues: string
 }
 
-export type TUser_Query = Omit<TUser_Slice, 'id'>
-//& { id: string }
+// export type TUser_Query = Omit<TUser_Slice, 'id'>
+// //& { id: string }
 
-export type TUser_Query_id = Omit<TUser_Slice, 'id'> & { id: string }
+export type TUser_Query = Omit<TUser_Slice, 'id'> & { id: string }
+
+export type THeads = {
+    key: string
+    label: string
+    style?: CSSProperties
+}
+
+export type TTableUserHeads = Omit<THeads, 'key'> & { key: keyof TUser_Query | 'date' | 'action' }
