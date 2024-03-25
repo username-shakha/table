@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useOverlayState, useUserManagement } from '@/hooks'
-import { Container, CustomButton, CustomTable, Form, Modal, TABLE_USER_HEADS } from '@/components'
+import { Container, CustomButton, CustomTable, Form, Dialog, TABLE_USER_HEADS } from '@/components'
 import { TUser_Query } from '@/types'
 import './style.sass'
 
@@ -69,17 +69,17 @@ function List() {
                     }}
                 />
 
-                <Modal isOpen={updateDialogState.isOpen} onClose={updateDialogState.close}>
+                <Dialog isOpen={updateDialogState.isOpen} onClose={updateDialogState.close}>
                     <p>update user</p>
                     {typeof currentUser === 'object' && currentUser !== null && <Form initialData={currentUser} />}
-                </Modal>
+                </Dialog>
 
-                <Modal isOpen={createDialogState.isOpen} onClose={createDialogState.close}>
+                <Dialog isOpen={createDialogState.isOpen} onClose={createDialogState.close}>
                     <p>create user</p>
                     <Form />
-                </Modal>
+                </Dialog>
 
-                <Modal isOpen={removeDialogState.isOpen} onClose={removeDialogState.close}>
+                <Dialog isOpen={removeDialogState.isOpen} onClose={removeDialogState.close}>
                     <div>
                         <div style={removeDialogContentBox}>
                             <h4>Вы уверены что хотите удалить этого пользователя?</h4>
@@ -103,7 +103,7 @@ function List() {
                             </CustomButton>
                         </div>
                     </div>
-                </Modal>
+                </Dialog>
             </Container>
         </>
     )
