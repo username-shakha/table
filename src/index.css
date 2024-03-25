@@ -17,7 +17,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
@@ -28,23 +28,25 @@
 input {
     width: 100%;
     display: block;
-    min-height: 35px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
+    min-height: 30px;
+    border: 1px solid #dddddd98;
     outline: none;
-    font-size: 14px;
-    padding-left: 10px;
+    font-size: 13px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 label {
     display: block;
-    font-size: 14px;
-    margin: 5px 0px 2px 0px;
-    padding-left: 5px;
+    font-size: 13px;
+    padding: 0 5px;
+    margin-bottom: 1px;
 }
-
-/* input[type='radio'] {
-  width: 15px;
-  height: 15px;
-  transition: 0.4s;
+/* 
+input[type='radio'] {
+    width: 15px;
+    height: 15px;
+    transition: 0.4s;
 } */

@@ -41,16 +41,21 @@ export default function CustomTable({ isLoading, heads, rows, handleUpdate, hand
                             {heads.map((head) => {
                                 return head.key === 'action' ? (
                                     <td key={head.key} style={head.style}>
-                                        <CustomButton
-                                            style={{ marginRight: '15px' }}
-                                            variant="outline"
-                                            onClick={() => handleUpdate(row as TUser_Query)}
-                                        >
-                                            Edit
-                                        </CustomButton>
-                                        <CustomButton variant="outline" onClick={() => handleDelete(row.id as string)}>
-                                            Delete
-                                        </CustomButton>
+                                        <div style={{ display: 'flex' }}>
+                                            <CustomButton
+                                                style={{ marginRight: '15px' }}
+                                                variant="outlined"
+                                                onClick={() => handleUpdate(row as TUser_Query)}
+                                            >
+                                                Edit
+                                            </CustomButton>
+                                            <CustomButton
+                                                variant="outlined"
+                                                onClick={() => handleDelete(row.id as string)}
+                                            >
+                                                Delete
+                                            </CustomButton>
+                                        </div>
                                     </td>
                                 ) : head.key === 'date' ? (
                                     <td key={head.key}>{row[head.key]}</td>

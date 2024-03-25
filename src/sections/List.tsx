@@ -44,17 +44,21 @@ function List() {
     return (
         <>
             <header className="list-header">
-                <Container maxWidth="xl" style={{ margin: '30px 0px' }}>
+                <Container maxWidth="lg" style={{ marginTop: '30px', marginBottom: '30px' }}>
                     <div style={headerStyles}>
                         <h3 style={{ paddingLeft: '15px' }}>Добавить нового пользователя</h3>
-                        <CustomButton variant="outline" onClick={() => createDialogState.open()}>
+                        <CustomButton
+                            variant="contained"
+                            style={{ padding: '8px', fontSize: '13px' }}
+                            onClick={() => createDialogState.open()}
+                        >
                             Добавить
                         </CustomButton>
                     </div>
                 </Container>
             </header>
 
-            <Container maxWidth="xl">
+            <Container maxWidth="lg">
                 <CustomTable
                     isLoading={usersQueryLoading}
                     rows={usersQueryData as TUser_Query[]}
@@ -75,7 +79,6 @@ function List() {
                 </Dialog>
 
                 <Dialog isOpen={createDialogState.isOpen} onClose={createDialogState.close}>
-                    <p>create user</p>
                     <Form />
                 </Dialog>
 
@@ -90,7 +93,7 @@ function List() {
 
                         <div className="remove-dialog">
                             <CustomButton
-                                variant="outline"
+                                variant="outlined"
                                 onClick={() => {
                                     setCurrentUser(null)
                                     removeDialogState.close()
@@ -98,7 +101,11 @@ function List() {
                             >
                                 Отменить
                             </CustomButton>
-                            <CustomButton variant="outline" onClick={() => currentUserHandler(currentUser)}>
+                            <CustomButton
+                                variant="outlined"
+                                color="error"
+                                onClick={() => currentUserHandler(currentUser)}
+                            >
                                 {isDeleteLoading ? 'Удаление...' : 'Да'}
                             </CustomButton>
                         </div>
@@ -110,7 +117,8 @@ function List() {
 }
 
 const headerStyles = {
-    padding: '20px',
+    minWidth: '1095px',
+    padding: '10px 15px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',

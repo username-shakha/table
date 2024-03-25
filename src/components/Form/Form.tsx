@@ -170,6 +170,7 @@ export default function Form({ initialData }: FormProps) {
             <h4 className={styles.heading}>Выберите статус пользователя</h4>
             <div className={styles.radio}>
                 <input
+                    style={{ marginBottom: '0px' }}
                     required
                     type="radio"
                     id="activeStatus"
@@ -179,8 +180,9 @@ export default function Form({ initialData }: FormProps) {
                 />
                 <label htmlFor="activeStatus">Активный</label>
             </div>
-            <div className={styles.radio}>
+            <div className={styles.radio} style={{ marginBottom: '5px' }}>
                 <input
+                    style={{ marginBottom: '0px' }}
                     required
                     type="radio"
                     id="inactiveStatus"
@@ -195,7 +197,16 @@ export default function Form({ initialData }: FormProps) {
             <input required type="text" id="dialogues" value={dialogues} onChange={handleDialoguesInputChange} />
 
             <div style={{ textAlign: 'center' }}>
-                <CustomButton variant="outline" type="submit" style={{ marginTop: '15px' }}>
+                <CustomButton
+                    variant="outlined"
+                    type="submit"
+                    style={{
+                        marginTop: '10px',
+                        padding: '4px 8px',
+                        textTransform: 'capitalize',
+                        fontSize: '14px',
+                    }}
+                >
                     Submit
                 </CustomButton>
             </div>

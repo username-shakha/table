@@ -25,7 +25,7 @@ const TABLE_USER_HEADS: TTableUserHeads[] = [
     {
         key: 'phone',
         label: 'Телефон',
-        style: { minWidth: '90px' },
+        style: { minWidth: '130px', width: '130px' },
     },
     {
         key: 'selectedCompany',
@@ -34,11 +34,12 @@ const TABLE_USER_HEADS: TTableUserHeads[] = [
     {
         key: 'department',
         label: 'Отдел',
+        style: { width: '70px' },
     },
     {
         key: 'userStatus',
         label: 'Статус',
-        style: { minWidth: '70px' },
+        style: { width: '80px' },
     },
     {
         key: 'dialogues',

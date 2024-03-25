@@ -1,19 +1,6 @@
 {
   "users": [
     {
-      "id": "7ea9",
-      "name": "Ursa Castro",
-      "surname": "Garza",
-      "username": "wuzolybax",
-      "startDate": "1980-10-26",
-      "endDate": "1999-11-14",
-      "phone": "+1 (325) 648-5349",
-      "selectedCompany": "company2",
-      "department": "Quo pariatur Facili",
-      "userStatus": "active",
-      "dialogues": "Aliquip illum solut"
-    },
-    {
       "id": "22aa",
       "name": "Dara Stone",
       "surname": "Lloyd",
@@ -103,6 +90,32 @@
       "department": "Magna odit ea modi i",
       "userStatus": "inactive",
       "dialogues": "Dolore consequatur "
+    },
+    {
+      "id": "9892",
+      "name": "Shaxzodjon",
+      "surname": "Israilov",
+      "username": "shakha_77",
+      "startDate": "2024-04-16",
+      "endDate": "2024-04-20",
+      "phone": "+998 97 436 06 40",
+      "selectedCompany": "company3",
+      "department": "IT",
+      "userStatus": "active",
+      "dialogues": "PayPal Click"
+    },
+    {
+      "id": "9b89",
+      "name": "Wynne Hines",
+      "surname": "Thomas",
+      "username": "pufywavoh",
+      "startDate": "1983-04-26",
+      "endDate": "2008-10-05",
+      "phone": "+1 (486) 806-1987",
+      "selectedCompany": "company2",
+      "department": "Ullamco iure veniam",
+      "userStatus": "active",
+      "dialogues": "Sapiente inventore q"
     }
   ]
 }
