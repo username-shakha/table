@@ -52,6 +52,7 @@ function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
 
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors)
+            return
         }
 
         setErrors({})
@@ -83,7 +84,12 @@ function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
             <Input id="firstname" label="Имя" inputRef={refs.name} errorText={errors.name} />
             <Input id="lastname" label="Фамилия" inputRef={refs.surname} errorText={errors.surname} />
             <Input id="username" label="Имя Пользователя" inputRef={refs.username} errorText={errors.username} />
-            <ScheduleInput label="График работы" startDate={refs.startDate} endDate={refs.endDate} />
+            <ScheduleInput
+                label="График работы"
+                startDate={refs.startDate}
+                endDate={refs.endDate}
+                errorText={errors.startDate && 'invalid date'}
+            />
             <Input id="mobile" label="Телефон" inputRef={refs.phone} errorText={errors.phone} />
             <Autocomplete
                 title="Выберите компанию"
