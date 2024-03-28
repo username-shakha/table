@@ -165,7 +165,7 @@ export default function Form({ initialData }: FormProps) {
                 {/* Добавьте другие компании по аналогии */}
             </select>
 
-            <Autocomplete />
+            <Autocomplete title="Выберите компанию" options={['Gazprom', 'Lukoil', 'Rosneft', 'Rosseti', 'Tatneft']} />
 
             <label htmlFor="department">Отдел</label>
             <input type="text" id="department" value={department} onChange={handleDepartmentChange} required />
