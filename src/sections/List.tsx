@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useOverlayState, useUserManagement } from '@/hooks'
-import { Container, CustomButton, CustomTable, Form, Dialog, TABLE_USER_HEADS } from '@/components'
+import { Container, CustomButton, CustomTable, Dialog, TABLE_USER_HEADS } from '@/components'
 import { TUser_Query } from '@/types'
 import './style.sass'
 import CreateUpdateForm from './user/CreateUpdateForm'
@@ -76,7 +76,10 @@ function List() {
 
                 <Dialog isOpen={updateDialogState.isOpen} onClose={updateDialogState.close}>
                     <p>update user</p>
-                    {typeof currentUser === 'object' && currentUser !== null && <Form initialData={currentUser} />}
+                    {/* {typeof currentUser === 'object' && currentUser !== null && <Form initialData={currentUser} />} */}
+                    {typeof currentUser === 'object' && currentUser !== null && (
+                        <CreateUpdateForm initialData={currentUser} />
+                    )}
                 </Dialog>
 
                 <Dialog isOpen={createDialogState.isOpen} onClose={createDialogState.close}>

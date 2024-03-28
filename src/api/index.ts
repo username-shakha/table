@@ -1,6 +1,6 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 import { createApi } from '@reduxjs/toolkit/query/react'
-import { TUser_Query } from '@/types'
+import { TNewUser, TUser_Query } from '@/types'
 
 const tagTypes = () => [
     {
@@ -38,7 +38,7 @@ export const api = createApi({
             void,
             {
                 id: TUser_Query['id']
-                user: TUser_Query
+                user: TNewUser
             }
         >({
             query: ({ id, user }) => ({

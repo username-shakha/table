@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { ChangeEvent, RefObject, useEffect, useMemo, useState } from 'react'
 //ChangeEvent
 import './style.sass'
 import { ClearIcon, DownIcon, UpIcon } from '../icons'
@@ -6,24 +6,25 @@ import { ClearIcon, DownIcon, UpIcon } from '../icons'
 interface IAutocompleteProps {
     options: string[]
     selectOption: (val: string) => void
+    inputRef: RefObject<HTMLInputElement>
     title: string
+    errorText?: string
 }
 
-function Autocomplete({ options, selectOption, title }: IAutocompleteProps) {
+function Autocomplete({ options, selectOption, inputRef, title, errorText }: IAutocompleteProps) {
     const [inputValue, setInputValue] = useState('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
-    // const hanleIputChange = (event: ChangeEvent<HTMLInputElement>) => {
-    //     const { value } = event.target
-    //     setInputValue(value)
-    //     setIsOpen(true)
-    // }
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value)
+        setIsOpen(true)
+    }
 
-    // const handleOptionClick = (option: string) => {
-    //     setInputValue(option)
-    //     selectOption(option)
-    //     setIsOpen(false)
-    // }
+    const handleOptionClick = (option: string) => {
+        setInputValue(option)
+        selectOption(option)
+        setIsOpen(false)
+    }
 
     const optionList = useMemo(() => {
         return options.filter((option) => option.toLowerCase().includes(inputValue.toLowerCase()))
@@ -41,19 +42,22 @@ function Autocomplete({ options, selectOption, title }: IAutocompleteProps) {
         }
     }, [])
 
+    useEffect(() => {
+        if (inputRef.current) {
+            setInputValue(inputRef.current.value)
+        }
+    }, [inputRef])
+
     return (
         <div className="autocomplete">
             <label htmlFor="autocomplete">{title ? title : 'Выберите параметры'}</label>
             <input
                 type="text"
-                placeholder="Select Option"
-                //id="autocomplete"
                 value={inputValue}
-                onChange={({ target }) => {
-                    setInputValue(target.value)
-                    setIsOpen(true)
-                }}
+                onChange={handleInputChange}
                 onFocus={() => setIsOpen(true)}
+                ref={inputRef}
+                placeholder="Select Option"
                 onMouseDown={(e) => e.stopPropagation()}
             />
 
@@ -72,17 +76,24 @@ function Autocomplete({ options, selectOption, title }: IAutocompleteProps) {
                     {optionList.map((option) => (
                         <li
                             key={option}
-                            onClick={() => {
-                                setInputValue(option)
-                                selectOption(option)
-                                setIsOpen(false)
-                            }}
+                            onClick={() => handleOptionClick(option)}
                             onMouseDown={(e) => e.stopPropagation()}
                         >
                             {option}
                         </li>
                     ))}
                 </ul>
+            )}
+            {errorText && (
+                <span
+                    style={{
+                        color: 'red',
+                        fontStyle: 'italic',
+                        float: 'left',
+                    }}
+                >
+                    {errorText}
+                </span>
             )}
         </div>
     )

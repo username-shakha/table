@@ -1,4 +1,4 @@
-import { CSSProperties } from 'react'
+import { CSSProperties, ReactNode } from 'react'
 
 export type TUser_Slice = {
     id: number // number
@@ -14,7 +14,7 @@ export type TUser_Slice = {
     dialogues: string
 }
 
-// export type TUser_Query = Omit<TUser_Slice, 'id'>
+export type TNewUser = Omit<TUser_Slice, 'id'>
 // //& { id: string }
 
 export type TUser_Query = Omit<TUser_Slice, 'id'> & { id: string }
@@ -23,6 +23,8 @@ export type THeads = {
     key: string
     label: string
     style?: CSSProperties
+    hidden?: boolean
+    render?: (value: string, row?: Record<string, ReactNode>) => ReactNode
 }
 
-export type TTableUserHeads = Omit<THeads, 'key'> & { key: keyof TUser_Query | 'date' | 'action' }
+export type TTableUserHeads = Omit<THeads, 'key'> & { key: keyof TUser_Query | 'action' }
