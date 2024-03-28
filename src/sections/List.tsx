@@ -3,6 +3,7 @@ import { useOverlayState, useUserManagement } from '@/hooks'
 import { Container, CustomButton, CustomTable, Form, Dialog, TABLE_USER_HEADS } from '@/components'
 import { TUser_Query } from '@/types'
 import './style.sass'
+import CreateUpdateForm from './user/CreateUpdateForm'
 
 function List() {
     //useGet hook mockapi api data
@@ -79,7 +80,8 @@ function List() {
                 </Dialog>
 
                 <Dialog isOpen={createDialogState.isOpen} onClose={createDialogState.close}>
-                    <Form />
+                    {/* <Form /> */}
+                    <CreateUpdateForm />
                 </Dialog>
 
                 <Dialog isOpen={removeDialogState.isOpen} onClose={removeDialogState.close}>

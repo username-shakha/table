@@ -1,10 +1,10 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { useUserManagement } from '@/hooks'
 import CustomButton from '../CustomButton/CustomButton'
 import { TUser_Query } from '@/types'
 import styles from './Form.module.css'
-import Autocomplete from '../Autocomplete'
-import Input from '../Input'
+// import Autocomplete from '../Autocomplete'
+// import Input from '../Input'
 
 //props
 interface FormProps {
@@ -26,25 +26,25 @@ export default function Form({ initialData }: FormProps) {
     const [userStatus, setUserStatus] = useState('active')
     const [dialogues, setDialogues] = useState('')
 
-    const refs = {
-        firstName: useRef<HTMLInputElement>(null),
-        lastName: useRef<HTMLInputElement>(null),
-        user_name: useRef<HTMLInputElement>(null),
-        mobile: useRef<HTMLInputElement>(null),
-        company: useRef<HTMLInputElement>(null),
-        department: useRef<HTMLInputElement>(null),
-        dialogues: useRef<HTMLInputElement>(null),
-        startTime: useRef<HTMLInputElement>(null),
-        finishTime: useRef<HTMLInputElement>(null),
-    }
+    // const refs = {
+    //     firstName: useRef<HTMLInputElement>(null),
+    //     lastName: useRef<HTMLInputElement>(null),
+    //     user_name: useRef<HTMLInputElement>(null),
+    //     mobile: useRef<HTMLInputElement>(null),
+    //     company: useRef<HTMLInputElement>(null),
+    //     department: useRef<HTMLInputElement>(null),
+    //     dialogues: useRef<HTMLInputElement>(null),
+    //     startTime: useRef<HTMLInputElement>(null),
+    //     finishTime: useRef<HTMLInputElement>(null),
+    // }
 
-    const resetForm = () => {
-        Object.values(refs).forEach((ref) => {
-            if (ref.current) {
-                ref.current.value = ''
-            }
-        })
-    }
+    // const resetForm = () => {
+    //     Object.values(refs).forEach((ref) => {
+    //         if (ref.current) {
+    //             ref.current.value = ''
+    //         }
+    //     })
+    // }
 
     const handleDepartmentChange = (e: ChangeEvent<HTMLInputElement>) => {
         setDepartment(e.target.value)
@@ -186,8 +186,8 @@ export default function Form({ initialData }: FormProps) {
                 {/* Добавьте другие компании по аналогии */}
             </select>
 
-            <Input id="user_name" label="имя пользователя" inputRef={firstNameRef} />
-            <Autocomplete title="Выберите компанию" options={['Gazprom', 'Lukoil', 'Rosneft', 'Rosseti', 'Tatneft']} />
+            {/* <Input id="user_name" label="имя пользователя" inputRef={firstNameRef} />
+            <Autocomplete title="Выберите компанию" options={['Gazprom', 'Lukoil', 'Rosneft', 'Rosseti', 'Tatneft']} /> */}
 
             <label htmlFor="department">Отдел</label>
             <input type="text" id="department" value={department} onChange={handleDepartmentChange} required />
