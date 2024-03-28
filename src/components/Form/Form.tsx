@@ -3,6 +3,7 @@ import { useUserManagement } from '@/hooks'
 import CustomButton from '../CustomButton/CustomButton'
 import { TUser_Query } from '@/types'
 import styles from './Form.module.css'
+import Autocomplete from '../Autocomplete'
 
 //props
 interface FormProps {
@@ -163,6 +164,8 @@ export default function Form({ initialData }: FormProps) {
                 <option value="company3">Компания 3</option>
                 {/* Добавьте другие компании по аналогии */}
             </select>
+
+            <Autocomplete />
 
             <label htmlFor="department">Отдел</label>
             <input type="text" id="department" value={department} onChange={handleDepartmentChange} required />
