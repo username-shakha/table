@@ -5,17 +5,15 @@ const TABLE_USER_HEADS: TTableUserHeads[] = [
     {
         key: 'name',
         label: 'Имя',
-        style: { minWidth: '80px' },
     },
     {
         key: 'surname',
         label: 'Фамилия',
-        style: { minWidth: '80px' },
     },
     {
         key: 'username',
         label: 'User Name',
-        style: { minWidth: '40px', padding: ' 0px 20px ' },
+        style: { padding: ' 0px 20px ' },
     },
     {
         key: 'startDate',
@@ -60,7 +58,6 @@ const TABLE_USER_HEADS: TTableUserHeads[] = [
     {
         key: 'department',
         label: 'Отдел',
-        style: { width: '70px' },
     },
     {
         key: 'userStatus',
@@ -85,11 +82,13 @@ const TABLE_USER_HEADS: TTableUserHeads[] = [
     {
         key: 'dialogues',
         label: 'Диалогов в работе',
+        style: {
+            width: 260,
+        },
     },
     {
         key: 'action',
         label: 'action',
-        style: { minWidth: '140px', width: '150px' },
     },
 ]
 

@@ -3,6 +3,7 @@ import { useOverlayState, useUserManagement } from '@/hooks'
 import { Container, CustomButton, CustomTable, Dialog, TABLE_USER_HEADS } from '@/components'
 import CreateUpdateForm from './CreateUpdate/CreateUpdateForm'
 import { TUser_Query } from '@/types'
+import './UserList.sass'
 
 function UserList() {
     //useGet hook mockapi api data
@@ -42,10 +43,10 @@ function UserList() {
     // Page Not Found isError !!!
     if (usersQueryError) return <div>Page Not Found</div>
     return (
-        <>
-            <header className="list-header">
-                <Container maxWidth="lg" style={{ marginTop: '30px', marginBottom: '30px' }}>
-                    <div style={headerStyles}>
+        <div className="list-content">
+            <header>
+                <Container maxWidth="lg">
+                    <div className="list-content__header">
                         <h3 style={{ paddingLeft: '15px' }}>Добавить нового пользователя</h3>
                         <CustomButton
                             variant="contained"
@@ -74,14 +75,12 @@ function UserList() {
                 />
 
                 <Dialog isOpen={updateDialogState.isOpen} onClose={updateDialogState.close}>
-                    <p>update user</p>
                     {typeof currentUser === 'object' && currentUser !== null && (
                         <CreateUpdateForm initialData={currentUser} />
                     )}
                 </Dialog>
 
                 <Dialog isOpen={createDialogState.isOpen} onClose={createDialogState.close}>
-                    <p>create</p>
                     <CreateUpdateForm />
                 </Dialog>
 
@@ -115,18 +114,19 @@ function UserList() {
                     </div>
                 </Dialog>
             </Container>
-        </>
+        </div>
     )
 }
 
-const headerStyles = {
-    minWidth: '1095px',
-    padding: '10px 15px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.2)',
-}
+// style={headerStyles}
+// const headerStyles = {
+//     minWidth: '1095px',
+//     padding: '10px 15px',
+//     display: 'flex',
+//     alignItems: 'center',
+//     justifyContent: 'space-between',
+//     boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.2)',
+// }
 
 const removeDialog = {
     display: 'flex',

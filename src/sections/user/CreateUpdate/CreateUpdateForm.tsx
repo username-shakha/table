@@ -122,7 +122,11 @@ function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
             />
             <InputWET id="dialogues" label="Дилогов в работе" inputRef={refs.dialogues} errorText={errors.dialogues} />
             <div style={{ textAlign: 'right' }}>
-                <CustomButton type="submit" variant="outlined" style={{ marginTop: 20 }}>
+                <CustomButton
+                    type="submit"
+                    variant="outlined"
+                    style={{ marginTop: '10px', textTransform: 'capitalize', fontSize: '13px', padding: '1px 8px' }}
+                >
                     Submit
                 </CustomButton>
             </div>
