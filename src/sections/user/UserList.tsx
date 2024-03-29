@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useOverlayState, useUserManagement } from '@/hooks'
 import { Container, CustomButton, CustomTable, Dialog, TABLE_USER_HEADS } from '@/components'
-import CreateUpdateForm from './CreateUpdateForm'
+import CreateUpdateForm from './CreateUpdate/CreateUpdateForm'
 import { TUser_Query } from '@/types'
 
 function UserList() {

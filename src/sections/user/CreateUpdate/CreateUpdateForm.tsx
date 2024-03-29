@@ -2,10 +2,17 @@ import { FormEvent, useRef, useEffect, useState, RefObject } from 'react'
 import { useUserManagement } from '@/hooks'
 import { Autocomplete, CustomButton, CustomRadioInput, Input, ScheduleInput } from '@/components'
 import { TNewUser_Query, TUser_Query } from '@/types'
+import WithErrorText from './WithErrorText/WithErrorText'
 
 interface ICreateUpdateFormProps {
     initialData?: TUser_Query
 }
+
+//WET = WithErrorText
+const InputWET = WithErrorText(Input)
+const ScheduleInputWET = WithErrorText(ScheduleInput)
+const AutocompleteWET = WithErrorText(Autocomplete)
+const CustomRadioInputWET = WithErrorText(CustomRadioInput)
 
 function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
     const { createUser, updateUser } = useUserManagement()
@@ -81,17 +88,17 @@ function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <Input id="firstname" label="Имя" inputRef={refs.name} errorText={errors.name} />
-            <Input id="lastname" label="Фамилия" inputRef={refs.surname} errorText={errors.surname} />
-            <Input id="username" label="Имя Пользователя" inputRef={refs.username} errorText={errors.username} />
-            <ScheduleInput
+            <InputWET id="firstname" label="Имя" inputRef={refs.name} errorText={errors.name} />
+            <InputWET id="lastname" label="Фамилия" inputRef={refs.surname} errorText={errors.surname} />
+            <InputWET id="username" label="Имя Пользователя" inputRef={refs.username} errorText={errors.username} />
+            <ScheduleInputWET
                 label="График работы"
                 startDate={refs.startDate}
                 endDate={refs.endDate}
                 errorText={errors.startDate && 'invalid date'}
             />
-            <Input id="mobile" label="Телефон" inputRef={refs.phone} errorText={errors.phone} />
-            <Autocomplete
+            <InputWET id="mobile" label="Телефон" inputRef={refs.phone} errorText={errors.phone} />
+            <AutocompleteWET
                 title="Выберите компанию"
                 options={['Gazprom', 'Lukoil', 'Rosneft', 'Rosseti', 'Tatneft']}
                 selectOption={(val) => {
@@ -100,10 +107,10 @@ function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
                     }
                 }}
                 inputRef={refs.selectedCompany}
-                errorText={errors.selectedCompany}
+                errorText={errors.selectedCompany && 'company is required'}
             />
-            <Input id="departament" label="Отдел" inputRef={refs.department} errorText={errors.department} />
-            <CustomRadioInput
+            <InputWET id="departament" label="Отдел" inputRef={refs.department} errorText={errors.department} />
+            <CustomRadioInputWET
                 title="Выберите статус пользователя"
                 options={[
                     { value: 'active', label: 'Активный' },
@@ -113,7 +120,7 @@ function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
                 handleOptionChange={(val: string) => setStatus(val)}
                 errorText={errors.userStatus}
             />
-            <Input id="dialogues" label="Дилогов в работе" inputRef={refs.dialogues} errorText={errors.dialogues} />
+            <InputWET id="dialogues" label="Дилогов в работе" inputRef={refs.dialogues} errorText={errors.dialogues} />
             <div style={{ textAlign: 'right' }}>
                 <CustomButton type="submit" variant="outlined" style={{ marginTop: 20 }}>
                     Submit

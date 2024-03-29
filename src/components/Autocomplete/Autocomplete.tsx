@@ -8,10 +8,11 @@ interface IAutocompleteProps {
     selectOption: (val: string) => void
     inputRef: RefObject<HTMLInputElement>
     title: string
-    errorText?: string
+    // errorText?: string
 }
 
-function Autocomplete({ options, selectOption, inputRef, title, errorText }: IAutocompleteProps) {
+//errorText
+function Autocomplete({ options, selectOption, inputRef, title }: IAutocompleteProps) {
     const [inputValue, setInputValue] = useState('')
     const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -84,7 +85,7 @@ function Autocomplete({ options, selectOption, inputRef, title, errorText }: IAu
                     ))}
                 </ul>
             )}
-            {errorText && (
+            {/* {errorText && (
                 <span
                     style={{
                         color: 'red',
@@ -94,7 +95,7 @@ function Autocomplete({ options, selectOption, inputRef, title, errorText }: IAu
                 >
                     {errorText}
                 </span>
-            )}
+            )} */}
         </div>
     )
 }

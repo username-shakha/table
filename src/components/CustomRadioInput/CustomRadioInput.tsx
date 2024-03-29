@@ -7,11 +7,11 @@ interface IInputRadioProps {
     options: RadioOption[]
     selected: string
     title: string
-    errorText?: string
+    // errorText?: string
     handleOptionChange: (val: string) => void
 }
-
-function CustomRadioInput({ options, selected, title, errorText, handleOptionChange }: IInputRadioProps) {
+//errorText,
+function CustomRadioInput({ options, selected, title, handleOptionChange }: IInputRadioProps) {
     return (
         <div style={{ margin: '3px 0' }}>
             <label htmlFor="" style={{ textAlign: 'left' }}>
@@ -38,7 +38,7 @@ function CustomRadioInput({ options, selected, title, errorText, handleOptionCha
                     {option.label}
                 </div>
             ))}
-            {errorText && <span style={{ color: 'red', fontStyle: 'italic' }}>{errorText}</span>}
+            {/* {errorText && <span style={{ color: 'red', fontStyle: 'italic' }}>{errorText}</span>} */}
         </div>
     )
 }
