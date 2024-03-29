@@ -1,7 +1,7 @@
 import { CSSProperties, ReactNode } from 'react'
 
 export type TUser_Slice = {
-    id: number // number
+    id: number // id = number
     name: string
     surname: string
     username: string
@@ -14,10 +14,10 @@ export type TUser_Slice = {
     dialogues: string
 }
 
-export type TNewUser = Omit<TUser_Slice, 'id'>
+export type TNewUser_Query = Omit<TUser_Slice, 'id'> //the json-server automatically creates an identifier
 // //& { id: string }
 
-export type TUser_Query = Omit<TUser_Slice, 'id'> & { id: string }
+export type TUser_Query = Omit<TUser_Slice, 'id'> & { id: string } //id = string
 
 export type THeads = {
     key: string

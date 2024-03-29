@@ -1,7 +1,7 @@
 import { FormEvent, useRef, useEffect, useState, RefObject } from 'react'
 import { useUserManagement } from '@/hooks'
 import { Autocomplete, CustomButton, CustomRadioInput, Input, ScheduleInput } from '@/components'
-import { TNewUser, TUser_Query } from '@/types'
+import { TNewUser_Query, TUser_Query } from '@/types'
 
 interface ICreateUpdateFormProps {
     initialData?: TUser_Query
@@ -24,7 +24,7 @@ function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
         dialogues: useRef<HTMLInputElement>(null),
     }
 
-    const [errors, setErrors] = useState<Partial<TNewUser>>({})
+    const [errors, setErrors] = useState<Partial<TNewUser_Query>>({})
 
     const resetForm = () => {
         Object.values(refs).forEach((ref) => {
@@ -38,15 +38,15 @@ function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
         e.preventDefault()
 
         const keys = Object.keys(refs) as (keyof typeof refs)[]
-        const formData: TNewUser = Object.fromEntries(
+        const formData: TNewUser_Query = Object.fromEntries(
             keys.map((key) => [key, refs[key].current?.value || ''])
-        ) as TNewUser
+        ) as TNewUser_Query
 
         const newUser = { ...formData, userStatus: status }
-        const newErrors: Partial<TNewUser> = {}
+        const newErrors: Partial<TNewUser_Query> = {}
         for (const key in newUser) {
-            if (!newUser[key as keyof TNewUser].trim()) {
-                newErrors[key as keyof TNewUser] = `${key} is required`
+            if (!newUser[key as keyof TNewUser_Query].trim()) {
+                newErrors[key as keyof TNewUser_Query] = `${key} is required`
             }
         }
 

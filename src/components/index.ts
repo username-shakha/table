@@ -8,6 +8,5 @@ export { default as CustomRadioInput } from './CustomRadioInput/CustomRadioInput
 export { default as Input } from './Input/Input'
 export { default as Autocomplete } from './Autocomplete/Autocomplete'
 export { default as CustomTable } from './CustomTable/CustomTable'
-export { default as Form } from './Form/Form'
 export { default as Dialog } from './Dialog/Dialog'
 export { default as ScheduleInput } from './ScheduleInput/ScheduleInput'

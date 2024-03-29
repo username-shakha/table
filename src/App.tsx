@@ -1,13 +1,13 @@
 // import { RouterProvider } from 'react-router-dom'
 // import router from './routes'
 
-import List from './sections/List'
+import { UserList } from './sections'
 
 //<RouterProvider router={router}></RouterProvider>
 function App() {
     return (
         <>
-            <List />
+            <UserList />
         </>
     )
 }
