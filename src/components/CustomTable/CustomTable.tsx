@@ -44,7 +44,11 @@ export default function CustomTable({ isLoading, heads, rows, handleUpdate, hand
                             {heads.map((head, index) => {
                                 if (head.hidden) return null
                                 if (head.render != null)
-                                    return <td key={index}>{head.render(row[head.key] as string, row)}</td>
+                                    return (
+                                        <td key={index} style={head.style}>
+                                            {head.render(row[head.key] as string, row)}
+                                        </td>
+                                    )
 
                                 return head.key === 'action' ? (
                                     <td key={head.key} style={head.style}>
@@ -65,7 +69,9 @@ export default function CustomTable({ isLoading, heads, rows, handleUpdate, hand
                                         </div>
                                     </td>
                                 ) : (
-                                    <td key={head.key}>{row[head.key]}</td>
+                                    <td key={head.key} style={head.style}>
+                                        {row[head.key]}
+                                    </td>
                                 )
                             })}
                         </tr>

@@ -1,17 +1,17 @@
 {
   "users": [
     {
-      "id": "7912",
       "name": "shakha",
       "surname": "israilov",
       "username": "samurai_99",
       "startDate": "2024-03-30T11:00",
       "endDate": "2024-03-31T15:24",
-      "phone": "+986-714-04-61",
+      "phone": "+9(868)714-04-61",
       "selectedCompany": "Gazprom",
       "department": "IT",
       "dialogues": "hi developer",
-      "userStatus": "active"
+      "userStatus": "active",
+      "id": "7912"
     },
     {
       "name": "John",
@@ -19,12 +19,25 @@
       "username": "carter.s",
       "startDate": "2004-12-10T18:41",
       "endDate": "1982-04-26T14:38",
-      "phone": "+998(99)777-77-77",
+      "phone": "+7(989)515-15-15",
       "selectedCompany": "Rosseti",
       "department": "HR",
       "dialogues": "PayPal Click",
       "userStatus": "no-active",
       "id": "09be"
+    },
+    {
+      "name": "Medina",
+      "surname": "Hahn",
+      "username": "medina_2313",
+      "startDate": "2024-06-11T23:51",
+      "endDate": "2024-07-17T11:40",
+      "phone": "+7(714)826-76-76",
+      "selectedCompany": "Tatneft",
+      "department": "DevOps",
+      "dialogues": "Non non ",
+      "userStatus": "active",
+      "id": "d693"
     }
   ]
 }

@@ -97,7 +97,7 @@ function CreateUpdateForm({ initialData }: ICreateUpdateFormProps) {
                 endDate={refs.endDate}
                 errorText={errors.startDate && 'invalid date'}
             />
-            <InputWET id="mobile" label="Телефон" inputRef={refs.phone} errorText={errors.phone} />
+            <InputWET id="mobile" label="Телефон" inputRef={refs.phone} errorText={errors.phone} formatPhoneNumber />
             <AutocompleteWET
                 title="Выберите компанию"
                 options={['Gazprom', 'Lukoil', 'Rosneft', 'Rosseti', 'Tatneft']}
